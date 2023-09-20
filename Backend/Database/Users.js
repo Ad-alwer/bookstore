@@ -106,14 +106,34 @@ async function getbyjwt(userjwt) {
 }
 
 async function getusers() {
-  let users = await User.find({});
-  return users
-  }
+  let users = await User.find().sort({ isadmin: -1});
+  return users;
+}
 
+async function changeadmin(id) {
+  let user = await User.findOne({ _id: id });
+  const adminval = user.isadmin;
+  await User.findByIdAndUpdate(id, {
+    $set: {
+      isadmin: !adminval,
+    },
+  });
+  user = await User.findOne({ _id: id });
+  if (user.isadmin === !adminval) {
+    return {
+      status: true,
+    };
+  } else {
+    return {
+      status: false,
+    };
+  }
+}
 
 module.exports = {
   signup,
   login,
   getbyjwt,
   getusers,
+  changeadmin,
 };

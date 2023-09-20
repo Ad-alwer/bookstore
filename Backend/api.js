@@ -31,6 +31,7 @@ app.get("/find/:jwt", (req, res) => {
 });
 //
 
+//Get Users
 app.get("/users/:jwt", async (req, res) => {
   let users = await userDB.getusers();
   let thisuser = await userDB.getbyjwt(req.params.jwt);
@@ -42,5 +43,12 @@ app.get("/users/:jwt", async (req, res) => {
 
   res.send(users);
 });
+//
+
+//Change admin
+app.get("/users/admin/:id", (req, res) => {
+  userDB.changeadmin(req.params.id).then(data => res.send(data));
+});
+//
 
 app.listen(3000, () => console.log("listen"));

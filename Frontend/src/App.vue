@@ -29,6 +29,9 @@ input[type=text],input[type=password]{
 .enfont{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
 }
+.pointer{
+  cursor: pointer;
+}
 *{
   overflow: hidden;
 }
