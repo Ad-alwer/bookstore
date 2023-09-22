@@ -20,7 +20,7 @@ export default {
 *
 {
   /* font-family: Shabnam, sans-serif; */
-   font-family: 'B Koodak'; 
+   font-family: 'B Koodak';  
    
 }
 input[type=text],input[type=password]{
@@ -32,7 +32,11 @@ input[type=text],input[type=password]{
 .pointer{
   cursor: pointer;
 }
-*{
+/* *{
   overflow: hidden;
+} */
+input[type=number]{
+   font-family: 'B Koodak';  
+
 }
 </style>
