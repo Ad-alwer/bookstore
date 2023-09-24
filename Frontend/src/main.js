@@ -16,7 +16,7 @@ import bootstrap from "bootstrap/dist/js/bootstrap.bundle.js";
 import home from "./components/home.vue";
 import login from "./components/login.vue"
 import dashboard from "./components/dashboard.vue"
-import slider from "./components/dashboard/addbook.vue"
+import slider from "./components/dashboard/discount.vue"
 
 
 const routes = [

@@ -19,6 +19,8 @@ const bookstoreschema = new mongoose.Schema({
 });
 bookstoreschema.plugin(timestamp);
 
+const Book = mongoose.model("book", bookstoreschema);
+
 async function addbook(
   name,
   author,
@@ -29,7 +31,7 @@ async function addbook(
   monthsorders,
   imgs
 ) {
-  const Book = mongoose.model("book", bookstoreschema);
+  
   let bookcheck = await Book.findOne({ name: name });
   if(bookcheck){
     return{

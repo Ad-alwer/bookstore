@@ -7,6 +7,7 @@ const PersianDate = require("persian-date");
 const upload = require("./uploadfile");
 const userDB = require("./Database/Users");
 const bookDB = require("./Database/Book");
+const discountDB = require("./Database/discount");
 
 app.use(express.json());
 app.use(cors());
@@ -98,21 +99,54 @@ app.post(
         orders: 0,
       },
     ];
-    
-    bookDB.addbook(
-      req.body.name,
-      req.body.author,
-      req.body.year,
-      req.body.price,
-      req.body.genre,
-      req.body.discription,
-      monthorders,
-      imgs
-    ).then(data=>res.send(data))
+
+    bookDB
+      .addbook(
+        req.body.name,
+        req.body.author,
+        req.body.year,
+        req.body.price,
+        req.body.genre,
+        req.body.discription,
+        monthorders,
+        imgs
+      )
+      .then((data) => res.send(data));
   }
 );
 //
 
+//Add discount
+app.post("/adddiscount", (req, res) => {
+  discountDB
+    .adddiscount(
+      req.body.discountcode,
+      req.body.value,
+      req.body.countlimit,
+      req.body.minprice,
+      req.body.maxdiscount
+    )
+    .then((data) => res.send(data));
+});
+//
 
+//GET discounts
+app.get("/getdiscount", (req, res) => {
+  discountDB.getdiscount().then((data) => res.send(data));
+});
+//
+
+//GET active status
+app.get("/getdiscount/active/:id", (req, res) => {
+  discountDB.changeactive(req.params.id).then((data) => res.send(data));
+});
+//
+
+
+//GET delet
+app.get("/getdiscount/delet/:id", (req, res) => {
+  discountDB.deletdiscount(req.params.id).then((data) => res.send(data));
+});
+//
 
 app.listen(3000, () => console.log("listen"));

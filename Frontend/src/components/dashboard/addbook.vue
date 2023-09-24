@@ -237,7 +237,7 @@
 import { Icon } from "@iconify/vue";
 import axios from "axios";
 import { info } from "../../../config/default";
-// import funcs from "./login.vue";
+
 
 import Swal from "sweetalert2";
 
@@ -253,7 +253,6 @@ const Toast = Swal.mixin({
   },
 });
 
-// let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
 export default {
   name: "AddBooks",
