@@ -1,6 +1,6 @@
 <template>
   <div id="parent" class="container-fluid mt-4">
-    <div>
+    <div :class="popupshow ? 'blur' : '' ">
       <Table class="table table-bordered mt-3">
         <thead>
           <tr>
@@ -197,3 +197,6 @@ input[type="checkbox"]:checked + .switch {
   display: none;
 }
 </style>
+
+
+/Fix blur effect
