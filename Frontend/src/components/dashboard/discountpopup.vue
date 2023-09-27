@@ -124,11 +124,7 @@ const Toast = Swal.mixin({
 
 export default {
   name: "popupchange",
-  data() {
-    return {
-      flag: false,
-    };
-  },
+ 
 
   mounted() {
     document.addEventListener("keydown", this.esc);

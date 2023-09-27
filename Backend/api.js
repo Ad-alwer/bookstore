@@ -56,7 +56,7 @@ app.get("/users/admin/:id", (req, res) => {
 });
 //
 
-//Add file
+//Add Book
 app.post(
   "/addbook",
   upload.fields([
@@ -84,6 +84,7 @@ app.post(
     let imgs = [];
     arrayfiles.forEach((e) => {
       let path = req.files[e][0]["path"].replace(/\\/g, "/");
+      path = path.split("assets/")[1];
       let orginalname = req.files[e][0]["originalname"];
       let newimg = { name: orginalname, adress: path };
       imgs.push(newimg);
@@ -142,10 +143,15 @@ app.get("/getdiscount/active/:id", (req, res) => {
 });
 //
 
-
-//GET delet
+//Delet discount
 app.get("/getdiscount/delet/:id", (req, res) => {
   discountDB.deletdiscount(req.params.id).then((data) => res.send(data));
+});
+//
+
+//Get books
+app.get("/books", (req, res) => {
+  bookDB.getallbooks().then((data) => res.send(data.bookcheck));
 });
 //
 

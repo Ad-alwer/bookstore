@@ -67,6 +67,14 @@ async function addbook(
 
 }
 
+async function getallbooks(){
+  let bookcheck = await Book.find();
+  return{
+    bookcheck
+  }
+}
+
 module.exports = {
   addbook,
+  getallbooks
 };

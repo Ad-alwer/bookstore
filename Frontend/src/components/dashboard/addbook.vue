@@ -189,7 +189,7 @@
 
       <input
         type="number"
-        placeholder=" سال تولید"
+        placeholder=" سال انتشار"
         class="form-control my-2 border-secondary"
         ref="year"
       />
@@ -237,7 +237,6 @@
 import { Icon } from "@iconify/vue";
 import axios from "axios";
 import { info } from "../../../config/default";
-
 
 import Swal from "sweetalert2";
 
@@ -371,7 +370,7 @@ export default {
     },
     clear: function () {
       this.$refs.textarea.value = null;
-      this.lenghtshower=''
+      this.lenghtshower = "";
 
       this.$refs.name.value = "";
       this.$refs.author.value = "";
@@ -395,7 +394,6 @@ export default {
   background-color: rgb(255, 255, 255);
 }
 .plusbtn {
-  /* border-color: var(--teal); */
   border: 3px var(--teal) solid;
 }
 textarea {
@@ -408,7 +406,8 @@ textarea {
   overflow-y: scroll;
 }
 
-::placeholder, input {
+::placeholder,
+input {
   font-family: "B Koodak";
 }
 </style>
