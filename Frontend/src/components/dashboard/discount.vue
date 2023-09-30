@@ -1,6 +1,6 @@
 <template>
   <div id="parent" class="container-fluid mt-4">
-    <div :class="popupshow ? 'blur' : '' ">
+    <div :class="popupshow ? 'blur' : ''">
       <Table class="table table-bordered mt-3">
         <thead>
           <tr>
@@ -127,9 +127,8 @@ export default {
       });
     },
     remove: function (id, name) {
-      console.log(id);
       Swal.fire({
-        title: "ایا از پاک کردن مطمِن هستید؟",
+        title: "ایا از پاک کردن  مطمئن هستید؟",
         text: `شما در حال پاک کردن ${name} هستید`,
         icon: "warning",
         showCancelButton: true,
@@ -145,7 +144,7 @@ export default {
                 icon: "success",
                 title: "با موفقیت پاک شد",
               });
-              this.getdiscounts()
+              this.getdiscounts();
             } else {
               Toast.fire({
                 icon: "error",
@@ -197,6 +196,5 @@ input[type="checkbox"]:checked + .switch {
   display: none;
 }
 </style>
-
 
 /Fix blur effect
