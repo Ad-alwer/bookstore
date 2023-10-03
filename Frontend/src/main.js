@@ -16,13 +16,17 @@ import bootstrap from "bootstrap/dist/js/bootstrap.bundle.js";
 import home from "./components/home.vue";
 import login from "./components/login.vue"
 import dashboard from "./components/dashboard.vue"
-import slider from "./components/dashboard/showbooks.vue"
+import book from "./components/product.vue"
+
+import slider from "./components/product.vue"
 
 
 const routes = [
     { path: "/", component: home },
     { path: "/login", component: login },
     { path: "/dashboard", component:dashboard },
+    { path: "/book/:id", component:book },
+
 
 
     { path: "/slider", component: slider },

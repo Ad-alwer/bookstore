@@ -106,7 +106,7 @@ async function getbyjwt(userjwt) {
 }
 
 async function getusers() {
-  let users = await User.find().sort({ isadmin: -1});
+  let users = await User.find().sort({ isadmin: -1 });
   return users;
 }
 
@@ -130,10 +130,37 @@ async function changeadmin(id) {
   }
 }
 
+async function favourite(id, book) {
+  let user = await User.findById(id);
+  let favourite = user.favourite;
+  let index = favourite.findIndex((e) => e.id === book.id);
+  if (index >= 0) {
+    favourite.splice(index, 1);
+    await User.findByIdAndUpdate(id, {
+      $set: {
+        favourite,
+      },
+    });
+    return {
+      status: true,
+    };
+  } else {
+    favourite.push(book);
+    await User.findByIdAndUpdate(id, {
+      $set: {
+        favourite,
+      },
+    });
+    return {
+      status: true,
+    };
+  }
+}
 module.exports = {
   signup,
   login,
   getbyjwt,
   getusers,
   changeadmin,
+  favourite,
 };

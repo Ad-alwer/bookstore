@@ -273,22 +273,7 @@ export default {
         ? this.discountchecker(this.data.discount, this.data.price)
         : null;
 
-      // this.img1flag = this.data.imgs[0] ? true : null;
-      // this.img2flag = this.data.imgs[1] ? true : null;
-      // this.img3flag = this.data.imgs[2] ? true : null;
-      // this.img4flag = this.data.imgs[3] ? true : null;
-      // this.img1src = this.img1flag
-      //   ? require(`../../assets/${this.data.imgs[0].adress}`)
-      //   : null;
-      // this.img2src = this.img2flag
-      //   ? require(`../../assets/${this.data.imgs[1].adress}`)
-      //   : null;
-      // this.img3src = this.img3flag
-      //   ? require(`../../assets/${this.data.imgs[2].adress}`)
-      //   : null;
-      // this.img4src = this.img14lag
-      //   ? require(`../../assets/${this.data.imgs[3].adress}`)
-      //   : null;
+     
     });
   },
 

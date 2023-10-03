@@ -159,6 +159,7 @@ app.get("/books", (req, res) => {
 //Get book by id
 app.get("/book/:id", (req, res) => {
   bookDB.getbookbyid(req.params.id).then((data) => res.send(data.book));
+  // console.log(req.params.id);
 });
 //
 
@@ -226,5 +227,10 @@ app.get("/deletbook/:id", (req, res) => {
 });
 //
 
+//Favourite change
+app.post("/favourite",(req,res)=>{
+  userDB.favourite(req.body.user,req.body.book).then(data=>res.send(data))
+})
+//
 
 app.listen(3000, () => console.log("listen"));

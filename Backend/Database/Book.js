@@ -72,10 +72,22 @@ async function getallbooks() {
 }
 
 async function getbookbyid(id) {
-  let book = await Book.find({ _id: id });
-  return {
-    book,
-  };
+  if (mongoose.Types.ObjectId.isValid(id)) {
+    let book = await Book.find({ _id: id });
+  if(book){
+    return {
+      book,
+    };
+  }else{
+    return {
+      book:null
+    };
+  }
+  } else {
+    return {
+      book:null
+    };
+  }
 }
 
 async function updatebook(

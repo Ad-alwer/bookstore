@@ -32,7 +32,7 @@
  </div>
 </template>
 <script>
-// import Swiper core and required modules
+
 import {
   Navigation,
   Pagination,
@@ -51,7 +51,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/grid";
-// import { routerViewLocationKey } from "vue-router";
+
 
 // Import Swiper styles
 export default {
