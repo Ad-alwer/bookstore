@@ -233,4 +233,33 @@ app.post("/favourite",(req,res)=>{
 })
 //
 
+//ADD to card
+app.post("/addtocard",(req,res)=>{
+  userDB.addtocard(req.body.userid,req.body.book).then(data=>res.send(data))
+  
+})
+//
+
+// Plusnumber basket
+app.post("/plusnumber",(req,res)=>{
+  userDB.plusnubmer(req.body.id,req.body.bookid).then(data=>res.send(data))
+  
+})
+//
+
+// Minusnumber basket
+app.post("/minusnumber",(req,res)=>{
+  userDB.minusnubmer(req.body.id,req.body.bookid).then(data=>res.send(data))
+  
+})
+//
+
+
+// Delet basket
+app.post("/deletbasket",(req,res)=>{
+  userDB.deletbasket(req.body.id,req.body.bookid).then(data=>res.send(data))
+  
+})
+//
+
 app.listen(3000, () => console.log("listen"));

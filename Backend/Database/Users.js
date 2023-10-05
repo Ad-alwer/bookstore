@@ -156,6 +156,70 @@ async function favourite(id, book) {
     };
   }
 }
+
+async function addtocard(id, book) {
+  let user = await User.findById(id);
+  let basket = user.basket;
+  let index = basket.findIndex((e) => e.id === book.id);
+  if (index < 0) {
+    basket.push(book);
+    await User.findByIdAndUpdate(id, {
+      $set: {
+        basket,
+      },
+    });
+    return {
+      status: true,
+    };
+  }
+}
+
+async function plusnubmer(id, bookid) {
+  let user = await User.findById(id);
+  let basket = user.basket;
+  let index = basket.findIndex((e) => e.id === bookid);
+  basket[index].number++;
+  await User.findByIdAndUpdate(id, {
+    $set: {
+      basket,
+    },
+    
+  });
+  return{
+    status:true
+  }
+}
+async function minusnubmer(id, bookid) {
+  let user = await User.findById(id);
+  let basket = user.basket;
+  let index = basket.findIndex((e) => e.id === bookid);
+  basket[index].number--;
+  await User.findByIdAndUpdate(id, {
+    $set: {
+      basket,
+    },
+    
+  });
+  return{
+    status:true
+  }
+}
+
+async function deletbasket(id, bookid) {
+  let user = await User.findById(id);
+  let basket = user.basket;
+  let index = basket.findIndex((e) => e.id === bookid);
+  basket.splice(index,1)
+  await User.findByIdAndUpdate(id, {
+    $set: {
+      basket,
+    },
+    
+  });
+  return{
+    status:true
+  }
+}
 module.exports = {
   signup,
   login,
@@ -163,4 +227,8 @@ module.exports = {
   getusers,
   changeadmin,
   favourite,
+  addtocard,
+  plusnubmer,
+  minusnubmer,
+  deletbasket
 };

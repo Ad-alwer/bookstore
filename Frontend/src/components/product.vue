@@ -45,7 +45,7 @@
       </div>
 
       <div class="div-btn mt-4 d-flex">
-        <button class="px-3 py-2 text-center btn-red btn text-white">
+        <button @click="addtocard" class="px-3 py-2 text-center btn-red btn text-white">
           افزودن به سبد خرید
         </button>
         <Icon
@@ -117,23 +117,13 @@ import "swiper/css/grid";
 
 import axios from "axios";
 import { info } from "../../config/default";
-// import Swal from "sweetalert2";
+
 import funcs from "./login.vue";
 
 let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
 
-//    const Toast = Swal.mixin({
-//      toast: true,
-//      position: "top-end",
-//      showConfirmButton: false,
-//      timer: 3000,
-//      timerProgressBar: true,
-//      didOpen: (toast) => {
-//        toast.addEventListener("mouseenter", Swal.stopTimer);
-//        toast.addEventListener("mouseleave", Swal.resumeTimer);
-//      },
-//    });
+
 export default {
   name: "Product",
   beforeMount() {
@@ -207,6 +197,7 @@ export default {
       }
     },
     favouritechecker: function () {
+     if(jwt){
       axios.get(`${apiaddress}find/${jwt}`).then((res) => {
         this.user = res.data.data;
         let check = this.user.favourite.find(
@@ -218,7 +209,25 @@ export default {
           this.like = false;
         }
       });
+     }
     },
+    addtocard:function(){
+      if(jwt){
+        axios.post(`${apiaddress}addtocard`,{
+        userid:this.user._id,
+        book:{
+          img:this.book.imgs[0].adress,
+          name:this.book.name,
+          id:this.book._id,
+          number:1
+
+        }
+      })
+      }else{
+        this.loginpopup = true;
+      }
+      
+    }
   },
 };
 </script>

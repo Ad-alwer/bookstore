@@ -240,21 +240,21 @@ import axios from "axios";
 
 import { info } from "../../../config/default";
 
- import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 let apiaddress = info.fetch["address"];
 
-   const Toast = Swal.mixin({
-     toast: true,
-     position: "top-end",
-     showConfirmButton: false,
-     timer: 3000,
-     timerProgressBar: true,
-     didOpen: (toast) => {
-       toast.addEventListener("mouseenter", Swal.stopTimer);
-       toast.addEventListener("mouseleave", Swal.resumeTimer);
-     },
-   });
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 export default {
   name: "popupchange",
@@ -272,8 +272,6 @@ export default {
       this.discount = this.data.discount
         ? this.discountchecker(this.data.discount, this.data.price)
         : null;
-
-     
     });
   },
 
@@ -300,7 +298,6 @@ export default {
 
   mounted() {
     document.addEventListener("keydown", this.esc);
-    
   },
 
   methods: {
@@ -309,9 +306,9 @@ export default {
       const numberregex = /^\d+$/;
       if (percentregex.test(discount)) {
         const number = parseFloat(discount);
-        return (this.discount = this.discount = value - (number / 100) * value);
+        return (this.discount = value - (number / 100) * value);
       } else if (numberregex.test(discount)) {
-        return (this.discount = this.discount = value - discount);
+        return (this.discount = value - discount);
       }
     },
 

@@ -17,8 +17,9 @@ import home from "./components/home.vue";
 import login from "./components/login.vue"
 import dashboard from "./components/dashboard.vue"
 import book from "./components/product.vue"
+import recordorder from "./components/recordorder.vue"
 
-import slider from "./components/product.vue"
+import slider from "./components/basket.vue"
 
 
 const routes = [
@@ -26,6 +27,9 @@ const routes = [
     { path: "/login", component: login },
     { path: "/dashboard", component:dashboard },
     { path: "/book/:id", component:book },
+    { path: "/recordorder", component:recordorder },
+
+
 
 
 
