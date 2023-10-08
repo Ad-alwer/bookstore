@@ -34,6 +34,39 @@ async function addorder(personaldata, paydata, productdata, orderdate) {
   }
 }
 
+async function getorders(){
+  let orders=await Order.find({})
+  return{
+    data:orders
+  }
+}
+
+async function changestatus(id,val,code){
+ if(code){
+  await Order.findByIdAndUpdate(id, {
+    $set: {
+     postcode:code,
+     status:val
+    },
+  });
+  return {
+    status:true
+  }
+ }else{
+  await Order.findByIdAndUpdate(id, {
+    $set: {
+     status:val
+    },
+  });
+  return {
+    status:true
+  }
+ }
+ 
+}
+
 module.exports={
-    addorder
+    addorder,
+    getorders,
+    changestatus
 }

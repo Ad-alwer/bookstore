@@ -285,7 +285,8 @@ app.post("/order/add", (req, res) => {
   ordertimeDB.adddata(persianMonth, persianYear);
   bookDB.bookaddorder(req.body.productdata[0].id, monthorders);
 
-  orderDB.addorder(
+  orderDB
+    .addorder(
       req.body.personaldata,
       req.body.paydata,
       req.body.productdata,
@@ -293,6 +294,20 @@ app.post("/order/add", (req, res) => {
     )
     .then((data) => res.send(data.data));
 });
+//
 
+//Get orders
+app.get("/orders", (req, res) => {
+  orderDB.getorders().then((data) => res.send(data.data));
+});
+//
+
+//Change stats
+app.post(`/orders/changestatus`, (req, res) => {
+  orderDB
+    .changestatus(req.body.id, req.body.value, req.body.postcode)
+    .then((data) => res.send(data));
+});
+//
 
 app.listen(3000, () => console.log("listen"));
