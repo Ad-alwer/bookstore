@@ -211,7 +211,9 @@ export default {
       });
     },
     finishorder:function(){
+       if(this.books.length > 0){
         location.href='/recordorder'
+       }
     }
   },
   data() {

@@ -13,7 +13,6 @@ const bookstoreschema = new mongoose.Schema({
   genre: String,
   description: String,
   discount: { type: String, default: null },
-  likes: { type: Number, default: 0 },
   orders: { type: Number, default: 0 },
   available: { type: Boolean, default: true },
   monthsorders: [],
@@ -74,18 +73,18 @@ async function getallbooks() {
 async function getbookbyid(id) {
   if (mongoose.Types.ObjectId.isValid(id)) {
     let book = await Book.find({ _id: id });
-  if(book){
-    return {
-      book,
-    };
-  }else{
-    return {
-      book:null
-    };
-  }
+    if (book) {
+      return {
+        book,
+      };
+    } else {
+      return {
+        book: null,
+      };
+    }
   } else {
     return {
-      book:null
+      book: null,
     };
   }
 }
@@ -140,7 +139,7 @@ async function changeavaible(id) {
 
 async function deletbook(id) {
   await Book.findByIdAndDelete(id);
-  let book =await Book.findOne({ _id: id });
+  let book = await Book.findOne({ _id: id });
   if (book) {
     return {
       status: false,
@@ -152,6 +151,40 @@ async function deletbook(id) {
   }
 }
 
+async function bookaddorder(id, date) {
+  const book = await Book.find({ _id: id });
+  let bookorder = book[0].orders + 1;
+  let bookmonthsorder = book[0].monthsorders;
+  let checkorder=bookmonthsorder.find(e=>{
+    return e.data === date
+  })
+  
+  if (checkorder) {
+    let index=bookmonthsorder.findIndex(e=>{
+      return e.data === date
+    })
+    bookmonthsorder[index].orders++
+    await Book.findByIdAndUpdate(id, {
+      $set: {
+        orders: bookorder,
+        monthsorders: bookmonthsorder,
+      },
+    });
+  } else {
+    bookmonthsorder.push({
+      data: date,
+      orders: 1,
+    });
+    await Book.findByIdAndUpdate(id, {
+      $set: {
+        orders: bookorder,
+        monthsorders: bookmonthsorder,
+      },
+    });
+  }
+
+}
+
 module.exports = {
   addbook,
   getallbooks,
@@ -159,4 +192,5 @@ module.exports = {
   updatebook,
   changeavaible,
   deletbook,
+  bookaddorder,
 };

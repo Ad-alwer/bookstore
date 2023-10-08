@@ -7,9 +7,9 @@ mongoose.connect(config.info.db.address).then(() => console.log("conect"));
 const bookstoreschema = new mongoose.Schema({
   code: String,
   value: { type: mongoose.Schema.Types.Mixed },
-  count: { type: mongoose.Schema.Types.Mixed },
-  minprice: { type: mongoose.Schema.Types.Mixed },
-  maxdiscount: { type: mongoose.Schema.Types.Mixed },
+  count:{ type:Number },
+  minprice: { type:Number },
+  maxdiscount: { type:Number },
   active: { type: Boolean, default: true },
 });
 bookstoreschema.plugin(timestamp);
@@ -92,9 +92,25 @@ async function deletdiscount (id){
     }
   }
 }
+
+async function checkcode(code){
+  let codeckecker = await Discount.findOne({code})
+  if(codeckecker){
+    return{
+      data:codeckecker
+
+    }
+    
+  }else{
+    return{
+      status:false
+    }
+  }
+}
 module.exports = {
   adddiscount,
   getdiscount,
   changeactive,
-  deletdiscount
+  deletdiscount,
+  checkcode
 };

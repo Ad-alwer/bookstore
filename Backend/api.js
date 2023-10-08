@@ -8,7 +8,8 @@ const upload = require("./uploadfile");
 const userDB = require("./Database/Users");
 const bookDB = require("./Database/Book");
 const discountDB = require("./Database/discount");
-const { application } = require("express");
+const orderDB = require("./Database/Orders");
+const ordertimeDB = require("./Database/OrdersTime");
 
 app.use(express.json());
 app.use(cors());
@@ -196,19 +197,20 @@ app.post(
       let newimg = { name: orginalname, adress: path };
       imgs.push(newimg);
     });
-  
 
-    bookDB.updatebook(
-      req.body.bookid,
-      req.body.name,
-      req.body.author,
-      req.body.price,
-      req.body.discount,
-      req.body.year,
-      req.body.genre,
-      req.body.discription,
-      imgs
-    ).then(data=>res.send(data))
+    bookDB
+      .updatebook(
+        req.body.bookid,
+        req.body.name,
+        req.body.author,
+        req.body.price,
+        req.body.discount,
+        req.body.year,
+        req.body.genre,
+        req.body.discription,
+        imgs
+      )
+      .then((data) => res.send(data));
   }
 );
 //
@@ -228,38 +230,69 @@ app.get("/deletbook/:id", (req, res) => {
 //
 
 //Favourite change
-app.post("/favourite",(req,res)=>{
-  userDB.favourite(req.body.user,req.body.book).then(data=>res.send(data))
-})
+app.post("/favourite", (req, res) => {
+  userDB.favourite(req.body.user, req.body.book).then((data) => res.send(data));
+});
 //
 
 //ADD to card
-app.post("/addtocard",(req,res)=>{
-  userDB.addtocard(req.body.userid,req.body.book).then(data=>res.send(data))
-  
-})
+app.post("/addtocard", (req, res) => {
+  userDB
+    .addtocard(req.body.userid, req.body.book)
+    .then((data) => res.send(data));
+});
 //
 
 // Plusnumber basket
-app.post("/plusnumber",(req,res)=>{
-  userDB.plusnubmer(req.body.id,req.body.bookid).then(data=>res.send(data))
-  
-})
+app.post("/plusnumber", (req, res) => {
+  userDB
+    .plusnubmer(req.body.id, req.body.bookid)
+    .then((data) => res.send(data));
+});
 //
 
 // Minusnumber basket
-app.post("/minusnumber",(req,res)=>{
-  userDB.minusnubmer(req.body.id,req.body.bookid).then(data=>res.send(data))
-  
-})
+app.post("/minusnumber", (req, res) => {
+  userDB
+    .minusnubmer(req.body.id, req.body.bookid)
+    .then((data) => res.send(data));
+});
 //
-
 
 // Delet basket
-app.post("/deletbasket",(req,res)=>{
-  userDB.deletbasket(req.body.id,req.body.bookid).then(data=>res.send(data))
-  
-})
+app.post("/deletbasket", (req, res) => {
+  userDB
+    .deletbasket(req.body.id, req.body.bookid)
+    .then((data) => res.send(data));
+});
 //
+
+//Code checker
+app.get("/codechecker/:code", (req, res) => {
+  discountDB.checkcode(req.params.code).then((data) => res.send(data));
+});
+//
+
+//Add order
+app.post("/order/add", (req, res) => {
+  const currentDate = new PersianDate();
+  const persianMonth = currentDate.format("MMMM");
+  const persianYear = currentDate.year();
+
+  let monthorders = `${persianYear} - ${persianMonth} `;
+  let ordersdate = [{ year: persianYear, month: persianMonth }];
+
+  ordertimeDB.adddata(persianMonth, persianYear);
+  bookDB.bookaddorder(req.body.productdata[0].id, monthorders);
+
+  orderDB.addorder(
+      req.body.personaldata,
+      req.body.paydata,
+      req.body.productdata,
+      ordersdate
+    )
+    .then((data) => res.send(data.data));
+});
+
 
 app.listen(3000, () => console.log("listen"));

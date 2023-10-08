@@ -9,13 +9,13 @@ const bookstoreschema = new mongoose.Schema({
   username: { type: String, required: true, uniqe: true, lowercase: true },
   email: { type: String, required: true, uniqe: true, lowercase: true },
   password: { type: String, required: true },
-  address: { type: String, default: null },
   isadmin: { type: Boolean, default: false },
   ismaster: { type: Boolean, default: false },
   basket: [],
   oreders: [],
   hmorders: { type: Number, default: 0 },
   favourite: [],
+  personaldata:[],
   img: { type: mongoose.Schema.ObjectId, default: null },
 });
 bookstoreschema.plugin(timestamp);

@@ -18,6 +18,7 @@ import login from "./components/login.vue"
 import dashboard from "./components/dashboard.vue"
 import book from "./components/product.vue"
 import recordorder from "./components/recordorder.vue"
+import discount from "./components/dashboard/discount.vue"
 
 import slider from "./components/basket.vue"
 
@@ -27,6 +28,8 @@ const routes = [
     { path: "/login", component: login },
     { path: "/dashboard", component:dashboard },
     { path: "/book/:id", component:book },
+    { path: "/discount", component:discount },
+
     { path: "/recordorder", component:recordorder },
 
 
