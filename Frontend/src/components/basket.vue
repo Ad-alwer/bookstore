@@ -249,6 +249,7 @@ export default {
     padding: 20px;
     height: 100vh;
     width: 400px;
+    overflow-y: auto;
   }
 }
 .btn-red {

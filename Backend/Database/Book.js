@@ -185,6 +185,21 @@ async function bookaddorder(id, date) {
 
 }
 
+async function getbookandorder(){
+  let result=await Book.find({},'name monthsorders')
+  return {
+    data:result
+  }
+}
+
+async function getmostbookorder(){
+  let result=await Book.find({},'name orders').sort({orders:-1}).limit(5)
+
+  return {
+    data:result
+  }
+}
+
 module.exports = {
   addbook,
   getallbooks,
@@ -193,4 +208,6 @@ module.exports = {
   changeavaible,
   deletbook,
   bookaddorder,
+  getbookandorder,
+  getmostbookorder
 };

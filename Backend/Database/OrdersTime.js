@@ -50,7 +50,15 @@ async function adddata(month, year) {
     await data.save();
   }
 }
+async function getorderstimes(){
+  let oreders =await Orderdate.find()
+  console.log(oreders);
+  return{
+    data:oreders
+  }
+}
 
 module.exports = {
   adddata,
+  getorderstimes
 };

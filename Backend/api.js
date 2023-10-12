@@ -310,4 +310,22 @@ app.post(`/orders/changestatus`, (req, res) => {
 });
 //
 
+//Get ordersdate
+app.get("/orderstime", (req, res) => {
+  ordertimeDB.getorderstimes().then((data) => res.send(data.data));
+});
+//
+
+//Get book and orders
+app.get("/bookorders", (req, res) => {
+  bookDB.getbookandorder().then((data) => res.send(data.data));
+});
+//
+
+//Getmost orders book
+app.get("/mostbookorders", (req, res) => {
+  bookDB.getmostbookorder().then((data) => res.send(data.data));
+});
+//
+
 app.listen(3000, () => console.log("listen"));
