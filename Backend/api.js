@@ -10,7 +10,9 @@ const bookDB = require("./Database/Book");
 const discountDB = require("./Database/discount");
 const orderDB = require("./Database/Orders");
 const ordertimeDB = require("./Database/OrdersTime");
+const requestDB = require("./Database/request");
 const BaseDB = require("./Database/Setting");
+
 
 app.use(express.json());
 app.use(cors());
@@ -391,6 +393,19 @@ app.post("/changegenre", (req, res) => {
 //Change base data
 app.get("/changebase/:wich", (req, res) => {
   BaseDB.changedata(req.params.wich).then((data) => res.send(data));
+});
+//
+
+
+//Get requests
+app.get("/getrequests", (req, res) => {
+  requestDB.getrequest().then((data) => res.send(data));
+});
+//
+
+//Delet requests
+app.get("/deleterequest/:id", (req, res) => {
+  requestDB.deleterequest(req.params.id).then((data) => res.send(data));
 });
 //
 
