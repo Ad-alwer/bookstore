@@ -46,7 +46,7 @@
             <th class="text-center">ایمیل</th>
             <th class="text-center">ادمین</th>
             <th class="text-center">تعداد خرید</th>
-            <th class="text-center">اطلاعات خرید</th>
+           
           </tr>
         </thead>
         <tbody v-if="arr.length <= 0">
@@ -82,14 +82,7 @@
               ></label>
             </th>
             <th class="text-center">{{ x.hmorders }}</th>
-            <th class="text-center">
-              <Icon
-                icon="icon-park-outline:doc-detail"
-                width="30px"
-                height="30px"
-                class="pointer"
-              />
-            </th>
+            
           </tr>
         </tbody>
       </table>
@@ -98,7 +91,7 @@
 </template>
 
 <script>
-import { Icon } from "@iconify/vue";
+
 
 import axios from "axios";
 import { info } from "../../../config/default";
@@ -116,14 +109,12 @@ export default {
       this.getusers();
     }
   },
-  components: {
-    Icon,
-  },
+
   data() {
     return {
       arr: [],
       thisuser: [],
-      // sort: "",
+      
       selected: "",
       select: [
         {

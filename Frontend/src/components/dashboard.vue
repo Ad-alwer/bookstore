@@ -1,21 +1,36 @@
 vue
 <template>
   <div id="parent" class="d-flex">
-    <hmenu />
-    <div>
-     
+    <hmenu class="menu" @changedata="changedata" />
+    <div class="w-100 h-100">
+      <users v-if="data == 'users'" class="w-100 h-100" />
+      <orders v-if="data == 'orders'" class="w-100 h-100" />
+      <addbook v-if="data == 'addbook'" class="w-100 h-100" />
+      <showbooks v-if="data == 'showbooks'" class="w-100 h-100" />
+      <analyze v-if="data == 'analyze'" class="w-100 h-100" />
+      <discount v-if="data == 'discount'" class="w-100 h-100" />
+      <setting v-if="data == 'base'" class="w-100 h-100" />
+      <request v-if="data == 'request'" class="w-100 h-100" />
     </div>
   </div>
 </template>
 
 <script>
+import hmenu from "./dashboard/menu.vue";
+import users from "./dashboard/users.vue";
+import orders from "./dashboard/orders.vue";
+import addbook from "./dashboard/addbook.vue";
+import showbooks from "./dashboard/showbooks.vue";
+import analyze from "./dashboard/analyze.vue";
+import discount from "./dashboard/discount.vue";
+import setting from "./dashboard/base.vue";
+import request from "./dashboard/request.vue";
+
 import axios from "axios";
 import { info } from "../../config/default";
 import funcs from "./login.vue";
 let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
-
-import hmenu from "./dashboard/menu.vue";
 
 export default {
   name: "dashboard",
@@ -30,14 +45,32 @@ export default {
   data() {
     return {
       master: false,
+      data: "users",
     };
   },
-  components: { hmenu },
+  components: {
+    hmenu,
+    users,
+    orders,
+    addbook,
+    showbooks,
+    discount,
+    analyze,
+    setting,
+    request,
+  },
+  methods: {
+    changedata: function (e) {
+      this.data = e;
+    },
+  },
 };
 </script>
 
 <style scoped>
-
+.menu {
+  overflow: hidden;
+}
 </style>
 
 //TODO DETAILSHOPS

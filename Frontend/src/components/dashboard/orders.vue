@@ -18,7 +18,7 @@
       <table class="table mt-5 table-bordered ">
         <thead>
           <tr>
-            <th class="text-center">کد رهگیری</th>
+            <th class="text-center" >کد رهگیری</th>
             <th class="text-center">نام</th>
             <th class="text-center">آدرس</th>
             <th class="text-center">شماره موبایل</th>
@@ -28,7 +28,7 @@
         </thead>
         <thead>
           <tr v-for="x in orders" :key="x">
-            <th class="text-center">
+            <th class="text-center w-25">
               {{ x._id }}
             </th>
             <th class="text-center">
@@ -225,4 +225,7 @@ export default {
     filter: blur(4px);
   }
 }
+th{
+  vertical-align: middle;
+  text-align: center;}
 </style>

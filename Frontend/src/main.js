@@ -18,11 +18,11 @@ import login from "./components/login.vue"
 import dashboard from "./components/dashboard.vue"
 import book from "./components/product.vue"
 import recordorder from "./components/recordorder.vue"
-// import addbook from "./components/basket.vue"
 
 
 
-import slider from "./components/dashboard/base.vue"
+
+import slider from "./components/dashboard/request.vue"
 
 
 const routes = [

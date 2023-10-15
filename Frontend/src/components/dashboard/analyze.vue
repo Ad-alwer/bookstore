@@ -1,8 +1,8 @@
 <template>
-  <div id="parent" class="container-fluid mt-4 mb-3">
+  <div id="parent" class="container pt-1 mb-3">
     <div class="mx-4 px-4">
       <p class="text-center fs-2">نمودار فروش ماهانه</p>
-      <canvas id="monthchart" class="" height="100"></canvas>
+      <canvas id="monthchart" class="" height="90"></canvas>
     </div>
   </div>
   <div class="d-flex w-100 ">
@@ -30,7 +30,7 @@
     </div>
     <div class="d-flex flex-column mx-auto mt-2 mb-1 ">
       <p class="text-center fs-2">نمودار پر فروش ترین کتاب ها</p>
-      <canvas id="mostorderschart" class="mt-3"  height="500" ></canvas>
+      <canvas id="mostorderschart" class="mt-1"  height="500" ></canvas>
     </div>
   </div>
 </template>

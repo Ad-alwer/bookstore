@@ -1,5 +1,5 @@
 <template>
-  <div id="parent" class="container mt-3">
+  <div id="parent" class="container mt-5">
     <div class="border-1 border border-secondary rounded-3">
       <div class="d-flex justify-content-center position-relative m-3">
         <p class="fs-3">بنر های سایت</p>
