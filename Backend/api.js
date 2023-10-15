@@ -10,6 +10,7 @@ const bookDB = require("./Database/Book");
 const discountDB = require("./Database/discount");
 const orderDB = require("./Database/Orders");
 const ordertimeDB = require("./Database/OrdersTime");
+const BaseDB = require("./Database/Setting");
 
 app.use(express.json());
 app.use(cors());
@@ -322,10 +323,76 @@ app.get("/bookorders", (req, res) => {
 });
 //
 
-//Getmost orders book
+//Get most orders book
 app.get("/mostbookorders", (req, res) => {
   bookDB.getmostbookorder().then((data) => res.send(data.data));
 });
 //
+
+//Get base data
+app.get("/getbase", (req, res) => {
+  BaseDB.getbasesdata().then((data) => res.send(data.data));
+});
+//
+
+//change banner
+app.post(
+  "/changebanner",
+  upload.fields([
+    { name: "file1", maxCount: 1 },
+    { name: "file2", maxCount: 1 },
+    { name: "file3", maxCount: 1 },
+    { name: "link1", maxCount: 1 },
+    { name: "link2", maxCount: 1 },
+    { name: "link3", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    let arrayfiles = [];
+    if (req.files["file1"]) {
+      arrayfiles.push("file1");
+    }
+    if (req.files["file2"]) {
+      arrayfiles.push("file2");
+    }
+    if (req.files["file3"]) {
+      arrayfiles.push("file3");
+    }
+
+    let banners = [];
+    let counter = 1;
+    console.log(req.body.link3);
+    arrayfiles.forEach((e) => {
+      let link;
+      counter === 1
+        ? (link = req.body.link1)
+        : counter === 2
+        ? (link = req.body.link2)
+        : (link = req.body.link3);
+      console.log(link);
+      let path = req.files[e][0]["path"].replace(/\\/g, "/");
+      path = path.split("assets/")[1];
+      let orginalname = req.files[e][0]["originalname"];
+      let banner = { name: orginalname, adress: path, link };
+      banners.push(banner);
+      counter++;
+      console.log(counter);
+    });
+    BaseDB.changebanner(banners, req.body.reset).then((data) => res.send(data));
+  }
+);
+//
+
+//Change genre
+app.post("/changegenre", (req, res) => {
+  BaseDB.changegenre(req.body.genre).then((data) => res.send(data));
+});
+//
+
+//Change base data
+app.get("/changebase/:wich", (req, res) => {
+  BaseDB.changedata(req.params.wich).then((data) => res.send(data));
+});
+//
+
 
 app.listen(3000, () => console.log("listen"));

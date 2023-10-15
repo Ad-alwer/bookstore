@@ -18,11 +18,11 @@ import login from "./components/login.vue"
 import dashboard from "./components/dashboard.vue"
 import book from "./components/product.vue"
 import recordorder from "./components/recordorder.vue"
-import addbook from "./components/basket.vue"
+// import addbook from "./components/basket.vue"
 
 
 
-import slider from "./components/dashboard/analyze.vue"
+import slider from "./components/dashboard/base.vue"
 
 
 const routes = [
@@ -30,7 +30,6 @@ const routes = [
     { path: "/login", component: login },
     { path: "/dashboard", component:dashboard },
     { path: "/book/:id", component:book },
-    { path: "/addbook", component:addbook },
 
 
 
