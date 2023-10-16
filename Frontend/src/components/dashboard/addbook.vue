@@ -199,7 +199,7 @@
         class="form-control my-2 border-secondary text-secondary"
         ref="genre"
       >
-        <option value="روانشناسی">روانشناسی</option>
+        <option v-for="x in genres" value="x" :key="x">{{ x }}</option>
       </select>
 
       <input
@@ -255,6 +255,11 @@ const Toast = Swal.mixin({
 let apiaddress = info.fetch["address"];
 export default {
   name: "AddBooks",
+  beforeMount(){
+    axios.get(`${apiaddress}getbase`).then((data) => {
+     this.genres = data.data.genre
+    });
+  },
   data() {
     return {
       lenghtshower: "",
@@ -268,6 +273,7 @@ export default {
       img2: null,
       img3: null,
       img4: null,
+      genres:[]
     };
   },
   components: {

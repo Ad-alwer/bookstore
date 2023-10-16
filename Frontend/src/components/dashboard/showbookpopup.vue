@@ -183,12 +183,13 @@
           ref="year"
         />
         <select
+        
           name=""
           id=""
           class="form-control border-secondary text-secondary"
           ref="genre"
         >
-          <option value="روانشناسی" selected>روانشناسی</option>
+          <option v-for="x in genres" value="x" :key="x">{{x}}</option>
         </select>
         <div class="d-flex gap-2">
           <input
@@ -273,6 +274,9 @@ export default {
         ? this.discountchecker(this.data.discount, this.data.price)
         : null;
     });
+    axios.get(`${apiaddress}getbase`).then((data) => {
+     this.genres = data.data.genre
+    });
   },
 
   data() {
@@ -288,6 +292,7 @@ export default {
       img3src: null,
       img4src: null,
       discount: "",
+      genres:[]
     };
   },
   components: {
