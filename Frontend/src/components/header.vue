@@ -4,7 +4,13 @@
       <div
         class="d-flex gap-4 pt-2 align-middle div-user order-2 justify-content-center"
       >
-        <Icon class="btns" icon="mdi:shopping-outline" width="30" height="30" />
+        <Icon
+          class="btns"
+          icon="mdi:shopping-outline"
+          width="30"
+          height="30"
+          @click="basketshow = true"
+        />
 
         <Icon
           class="btns"
@@ -55,46 +61,26 @@
           : 'd-flex justify-content-between mx-3 mt-2'
       "
     >
-      <div>
-        <span class="ps-2">کمک درسی</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">روانشناسی</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">رمان</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">کودک</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">جنایی</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">کمیک </span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">ورزشی</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
-      </div>
-      <div>
-        <span class="ps-2">شعر</span>
-        <Icon icon="icon-park:down" width="15" height="15" />
+      <div v-for="x in genres"  :key="x">
+        <span @click="gotoproducts()" class="ps-2 text-center span-genre">{{ x }} </span>
+       
+        
       </div>
     </nav>
+    <basket v-if="basketshow" @closepopup="basketshow = false" />
   </div>
 </template>
-//TODO BASKET
+
 <script>
+import basket from "./basket.vue";
 import popupprofile from "./header/popup.vue";
+
 import { Icon } from "@iconify/vue";
 import funcs from "./login.vue";
+import axios from "axios";
+import { info } from "../../config/default";
+
+let apiaddress = info.fetch["address"];
 let jwt = funcs.methods.getcookies("jwt");
 
 export default {
@@ -105,16 +91,22 @@ export default {
     } else {
       this.logined = false;
     }
+    axios.get(`${apiaddress}getbase`).then((data) => {
+     this.genres = data.data.genre
+    });
   },
   data() {
     return {
       profileshow: false,
       logined: null,
+      basketshow: false,
+      genres: [],
     };
   },
   components: {
     Icon,
     popupprofile,
+    basket,
   },
   methods: {
     loginpage: function () {
@@ -166,4 +158,9 @@ a:hover {
 .blur {
   filter: blur(4px);
 }
+.span-genre:hover{
+color: var(--teal);
+cursor: pointer;
+}
+
 </style>
