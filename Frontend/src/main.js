@@ -22,7 +22,7 @@ import recordorder from "./components/recordorder.vue"
 
 
 
-import slider from "./components/dashboard/request.vue"
+import slider from "./components/Footer.vue"
 
 
 const routes = [
