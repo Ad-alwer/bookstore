@@ -37,6 +37,7 @@
         <textarea
           class="border-2 rounded-4 px-4 py-3 form-control text-secondary"
           name=""
+          disabled
           id=""
           :value="book.description"
           cols="20"
