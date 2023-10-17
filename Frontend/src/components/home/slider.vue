@@ -21,11 +21,12 @@
       data-swiper-autoplay="2000"
       class="w-100 slider"
       style=""
-      v-for="x in photo"
+      v-for="x in arr"
       :key="x"
     >
-    <a href="">
-      <img :src="x" alt="" class="img-fluid rounded-4 w-100 mb-5  " />
+    <a :href="x.link">
+      <img :src="require(`../../assets/${x.adress}`)" alt="" class="img-fluid rounded-4 w-100 mb-5  " />
+      
     </a>
     </swiper-slide>
   </swiper>
@@ -52,22 +53,28 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/grid";
 
+import axios from "axios";
+import { info } from "../../../config/default";
+let apiaddress = info.fetch["address"];
+
 
 // Import Swiper styles
 export default {
+  beforeMount(){
+    axios.get(`${apiaddress}getbase`,).then(res=>{
+      this.arr =res.data.banner
+    })
+  },
   data() {
     return {
-      photo: [
-        `${require("../../assets/imgs/1.webp")}`,
-        `${require("../../assets/imgs/2.webp")}`,
-        `${require("../../assets/imgs/3.webp")}`,
-      ],
+     
       pagination: true,
       draggable: true,
       grid: { fill: "row", rows: "1" },
       autoplay: {
         delay: 2000,
       },
+      arr:[]
     };
   },
   components: {
