@@ -16,10 +16,7 @@
         @swiper="onSwiper"
         @slideChange="onSlideChange"
         :autoplay="autoplay"
-        centerInsufficientSlides="true"
-        center-insufficient-slides="true"
-        centered-slides-bounds="true"
-        centered-slides="true"
+        
         class="w-100"
       >
         <swiper-slide
@@ -129,7 +126,7 @@ export default {
         let index = res.data.findIndex((e) => e._id === this.id);
          res.data.splice(index, 1)
         res.data.forEach(e=>e.genre === this.genre ? this.arr.push(e): null )
-        console.log(this.arr);
+        
       }
     });
   },
@@ -144,7 +141,7 @@ export default {
       arr: [],
     };
   },
-    props: ["sort","id","genre"],
+    props: ["sort","bookid","genre"],
   components: {
     Swiper,
     SwiperSlide,

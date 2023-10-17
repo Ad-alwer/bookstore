@@ -1,7 +1,7 @@
 <template>
   <div id="parent" class="container-fluid mt-2">
     <homeheader id="header" />
-    <div id="slider" class="d-flex justify-content-center mt-3">
+    <div id="slider" class="d-flex justify-content-center mt-4">
       <swiper
         id="swiper"
         :modules="modules"
@@ -84,7 +84,9 @@
       </div>
     </div>
 
-    <div id="related book" class="py-1 px-2 mt-5 mx-3 rounded-4 mb-2"></div>
+    <!-- <div id="related book" class="py-1 px-2 mt-5 mx-3 rounded-4 mb-2"></div> -->
+    <miniSlider sort="related" :bookid="this.id" :genre="book.genre" id="relatedbook" class="mt-5"/>
+    <footerpage id="footer"/>
   </div>
   <popup
     v-if="loginpopup"
@@ -97,6 +99,8 @@
 import homeheader from "./header.vue";
 import { Icon } from "@iconify/vue";
 import popup from "./loginpopup.vue";
+import miniSlider from "./miniSlider.vue"
+import footerpage from "./Footer.vue";
 
 import {
   Navigation,
@@ -119,6 +123,8 @@ import axios from "axios";
 import { info } from "../../config/default";
 
 import funcs from "./login.vue";
+
+
 
 let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
@@ -152,6 +158,8 @@ export default {
     homeheader,
     Icon,
     popup,
+    miniSlider,
+    footerpage
   },
   setup() {
     const onSwiper = (swiper) => {
@@ -235,7 +243,7 @@ export default {
 <style scoped>
 #parent {
   display: grid;
-  grid: auto auto auto auto / 45% 55%;
+  grid: auto auto auto auto auto / 45% 55%;
   /* grid-row: auto auto auto;
   grid-column: 80% 20%; */
 }
@@ -257,11 +265,16 @@ export default {
   grid-column: 1 / span 2;
 }
 #relatedbook {
-  height: 300px;
-  /* width: 200px; */
+  height: 270px;
+ 
   background-color: var(--red);
   grid-row: 4;
   grid-column: 1 / span 2;
+}
+#footer{
+  grid-row: 5;
+  grid-column: 1 / span 2;
+  
 }
 
 #swiper {
