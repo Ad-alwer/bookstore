@@ -39,5 +39,8 @@ input[type=number]{
    font-family: 'B Koodak';  
 
 }
+.text-secondary{
+  color: #6C8BC0 !important
+}
 
 </style>

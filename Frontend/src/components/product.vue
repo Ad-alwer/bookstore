@@ -343,6 +343,9 @@ textarea.addcommenttxt {
 .blur {
   filter: blur(1px);
 }
+.text-secondary{
+  color: #6C8BC0 !important
+}
 </style>
 
 //TODO ADD footer to this //TODO ADD related book to this

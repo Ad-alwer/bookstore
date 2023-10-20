@@ -1,11 +1,11 @@
 <template>
- <div id="parent" class="d-flex justify-content-center mx-4 mt-4 ">
+ <div id="parent" class="d-flex justify-content-center mx-4 mt-5 ">
   <swiper
     :modules="modules"
     :slides-per-view="1"
     :space-between="10"
     navigation
-    :pagination="{ clickable: true }"
+    
     :scrollbar="{ draggable: true }"
     loop="true"
     :grid="grid"

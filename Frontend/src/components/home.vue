@@ -1,6 +1,6 @@
 <template>
   <div id="parent" class="container-fluid">
-    <homeheader />
+    <homeheader navshow="true" />
     <slider class="mt-4" />
     <div class="my-5 d-flex justify-content-evenly">
       <div class="card">

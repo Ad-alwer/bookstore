@@ -95,7 +95,7 @@ export default {
       location.href = `/book/${id}`;
     },
     gotoproducts: function (data) {
-      location.href = `/book/${data}`;
+      location.href = `/books/${data}`;
     },
     linkhandeler: function (link) {
       location.href = link;

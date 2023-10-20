@@ -47,24 +47,25 @@
 
       <div class="div-menu order-0 d-flex gap-5 pt-2 me-2 fw-bold fs-5">
         <a class="menu-item text-center" href="/">خانه</a>
-        <a class="menu-item text-center" href="/products">محصولات</a>
+        <a class="menu-item text-center" href="/books">محصولات</a>
         <a class="menu-item2 text-center" href="/request">درخواست کتاب</a>
         <a class="menu-item2 text-center" href="/questions">سوالات متداول</a>
         <a class="menu-item text-center" href="/about">درباره ما</a>
       </div>
     </header>
     <popupprofile v-if="profileshow" @closepopup="profileshow = false" />
-    <nav
+    <nav 
+    v-if="navshow"
       :class="
         profileshow
           ? 'd-flex justify-content-between mx-3 mt-2 blur'
           : 'd-flex justify-content-between mx-3 mt-2'
       "
     >
-      <div v-for="x in genres"  :key="x">
-        <span @click="gotoproducts()" class="ps-2 text-center span-genre">{{ x }} </span>
-       
-        
+      <div v-for="x in genres" :key="x">
+        <span @click="gotoproducts(x)" class="ps-2 text-center span-genre"
+          >{{ x }}
+        </span>
       </div>
     </nav>
     <basket v-if="basketshow" @closepopup="basketshow = false" />
@@ -92,7 +93,7 @@ export default {
       this.logined = false;
     }
     axios.get(`${apiaddress}getbase`).then((data) => {
-     this.genres = data.data.genre
+      this.genres = data.data.genre;
     });
   },
   data() {
@@ -108,9 +109,13 @@ export default {
     popupprofile,
     basket,
   },
+  props:['navshow'],
   methods: {
     loginpage: function () {
       location.href = "/login";
+    },
+    gotoproducts: function (e) {
+      location.href = `/books/${e}`;
     },
   },
 };
@@ -158,9 +163,8 @@ a:hover {
 .blur {
   filter: blur(4px);
 }
-.span-genre:hover{
-color: var(--teal);
-cursor: pointer;
+.span-genre:hover {
+  color: var(--teal);
+  cursor: pointer;
 }
-
 </style>
