@@ -410,4 +410,11 @@ app.get("/deleterequest/:id", (req, res) => {
 //
 
 
+//add reqbook
+app.post("/addreq", (req, res) => {
+  requestDB.addrequest(req.body.name,req.body.description).then(data=>res.send(data))
+});
+//
+
+
 app.listen(3000, () => console.log("listen"));
