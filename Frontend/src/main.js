@@ -26,7 +26,12 @@ import book from "./components/product.vue";
 import recordorder from "./components/recordorder.vue";
 import books from "./components/products.vue";
 import req from "./components/requestbook.vue"
+
+import questions from "./components/questions.vue";
+
+
 import slider from "./components/Products/sort.vue";
+
 
 const routes = [
   { path: "/", component: home },
@@ -36,6 +41,8 @@ const routes = [
   { path: "/books/:id?", component: books },
   { path: "/recordorder", component: recordorder },
   { path: "/request", component: req },
+  { path: "/questions", component: questions },
+
 
 
   { path: "/slider", component: slider },
