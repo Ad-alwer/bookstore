@@ -344,7 +344,7 @@ textarea.addcommenttxt {
   filter: blur(1px);
 }
 .text-secondary{
-  color: #6C8BC0 !important
+  color: #6c757d !important
 }
 </style>
 

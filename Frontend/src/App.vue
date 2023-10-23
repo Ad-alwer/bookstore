@@ -42,5 +42,9 @@ input[type=number]{
 .text-secondary{
   color: #6C8BC0 !important
 }
+.border-secondary{
+  border-color: #6C8BC0 !important
+ ;
+}
 
 </style>

@@ -220,6 +220,13 @@ async function deletbasket(id, bookid) {
     status:true
   }
 }
+
+async function getuser (jwt){
+  const user = await getbyjwt(jwt)
+  return{
+    data:user.data
+  }
+}
 module.exports = {
   signup,
   login,
@@ -230,5 +237,6 @@ module.exports = {
   addtocard,
   plusnubmer,
   minusnubmer,
-  deletbasket
+  deletbasket,
+  getuser
 };

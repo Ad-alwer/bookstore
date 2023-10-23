@@ -299,6 +299,10 @@ img {
 .txt-sum {
   font-size: 20px;
 }
+.border-secondary{
+ border-color:  #6C8BC0 !important
+
+}
 </style>
 
 //FIX DISCOUNT AND PRICE SHOWER

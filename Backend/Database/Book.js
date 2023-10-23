@@ -200,6 +200,15 @@ async function getmostbookorder(){
   }
 }
 
+async function getbook(id){
+  
+  let book =await Book.findById(id)
+  
+  return{
+    data:book
+  }
+}
+
 module.exports = {
   addbook,
   getallbooks,
@@ -209,5 +218,6 @@ module.exports = {
   deletbook,
   bookaddorder,
   getbookandorder,
-  getmostbookorder
+  getmostbookorder,
+  getbook
 };

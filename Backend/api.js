@@ -416,5 +416,17 @@ app.post("/addreq", (req, res) => {
 });
 //
 
+//Get userdata
+app.get("/profile/:jwt",(req,res)=>{
+  
+  userDB.getuser(req.params.jwt).then(data=>res.send(data.data))
+})
+//
 
+//Get book data
+app.get("/book/:id",(req,res)=>{
+  bookDB.getbook(req.params.id).then(data=>res.send(data.data))
+  
+})
+//
 app.listen(3000, () => console.log("listen"));

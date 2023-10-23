@@ -27,12 +27,11 @@ import recordorder from "./components/recordorder.vue";
 import books from "./components/products.vue";
 import req from "./components/requestbook.vue"
 import about from "./components/about.vue"
-
-
 import questions from "./components/questions.vue";
+import favourite from "./components/profile/favourite.vue"
 
 
-import slider from "./components/Products/sort.vue";
+// import slider from "./components/profile/menu.vue";
 
 
 const routes = [
@@ -45,11 +44,13 @@ const routes = [
   { path: "/request", component: req },
   { path: "/questions", component: questions },
   { path: "/about", component: about },
+  { path: "/profile/favourite", component: favourite },
 
 
 
 
-  { path: "/slider", component: slider },
+
+  // { path: "/slider", component: slider },
 ];
 
 const router = createRouter({
