@@ -7,26 +7,10 @@
         color="red"
         width="20"
         height="20"
-        class="mb-2 iconx"
+        class=" iconx"
         @click="close"
       />
-      <div class="d-flex gap-5 mx-2">
-        <img
-          v-if="img"
-          src="../../assets/imgs/Cillian_Murphy-2014.jpg"
-          class="img-fluid rounded-circle"
-          alt=""
-        />
-        <Icon
-          v-else
-          icon="ph:user"
-          width="60"
-          height="60"
-          class="d-inline-block mt-1 border-3 border-black border rounded-circle"
-        />
-        <p class="pname fw-semibold text-capitalize">{{ user.username }}</p>
-      </div>
-      <hr class="mx-3 border-1 border border-dark" />
+      
       <div class="">
         <ul class="">
           <li class="d-flex gap-4 py-3" @click="goto('profile')">
@@ -37,7 +21,7 @@
             <Icon icon="icon-park-outline:buy" width="20" height="20" />
             <span>سفارش ها</span>
           </li>
-          <li class="d-flex gap-4 py-3" @click="goto('orders')">
+          <li class="d-flex gap-4 py-3" @click="goto('profile/favourite')">
             <Icon icon="mdi:heart-outline" width="20" height="20" />
             <span>علاقه مندی ها</span>
           </li>
@@ -72,7 +56,7 @@ import funcs from "../../components/login.vue";
 let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
 
-//TODO SRC IMG
+
 
 import { Icon } from "@iconify/vue";
 
@@ -89,9 +73,7 @@ export default {
     axios.get(`${apiaddress}find/${jwt}`).then((res) => {
       this.user =res.data.data
       this.admin =res.data.data.isadmin
-      if(res.data.data.img){
-        //TODO Img
-      }
+      
 
       
 
@@ -101,7 +83,6 @@ export default {
     document.addEventListener("keydown", this.esc);
   },
 
-  // props: ["username", "password", "email"],
   methods: {
     close: function () {
       this.$emit("closepopup", "closed");
@@ -147,10 +128,7 @@ export default {
   outline: none;
   box-shadow: none;
 }
-img {
-  width: 60px;
-  height: 60px;
-}
+
 .pname {
   position: relative;
   top: 20px;

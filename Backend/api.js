@@ -13,7 +13,6 @@ const ordertimeDB = require("./Database/OrdersTime");
 const requestDB = require("./Database/request");
 const BaseDB = require("./Database/Setting");
 
-
 app.use(express.json());
 app.use(cors());
 
@@ -288,6 +287,8 @@ app.post("/order/add", (req, res) => {
   ordertimeDB.adddata(persianMonth, persianYear);
   bookDB.bookaddorder(req.body.productdata[0].id, monthorders);
 
+ 
+
   orderDB
     .addorder(
       req.body.personaldata,
@@ -295,7 +296,15 @@ app.post("/order/add", (req, res) => {
       req.body.productdata,
       ordersdate
     )
-    .then((data) => res.send(data.data));
+    .then(async(data) => {
+     await userDB.addorders(
+        req.body.productdata,
+        req.body.personaldata,
+        req.body.personaldata[0].userid,
+        data.data._id
+      )
+      res.send(data.data)
+    });
 });
 //
 
@@ -396,7 +405,6 @@ app.get("/changebase/:wich", (req, res) => {
 });
 //
 
-
 //Get requests
 app.get("/getrequests", (req, res) => {
   requestDB.getrequest().then((data) => res.send(data));
@@ -409,24 +417,30 @@ app.get("/deleterequest/:id", (req, res) => {
 });
 //
 
-
 //add reqbook
 app.post("/addreq", (req, res) => {
-  requestDB.addrequest(req.body.name,req.body.description).then(data=>res.send(data))
+  requestDB
+    .addrequest(req.body.name, req.body.description)
+    .then((data) => res.send(data));
 });
 //
 
 //Get userdata
-app.get("/profile/:jwt",(req,res)=>{
-  
-  userDB.getuser(req.params.jwt).then(data=>res.send(data.data))
-})
+app.get("/profile/:jwt", (req, res) => {
+  userDB.getuser(req.params.jwt).then((data) => res.send(data.data));
+});
 //
 
 //Get book data
-app.get("/book/:id",(req,res)=>{
-  bookDB.getbook(req.params.id).then(data=>res.send(data.data))
-  
+app.get("/book/:id", (req, res) => {
+  bookDB.getbook(req.params.id).then((data) => res.send(data.data));
+});
+//
+
+//Get statusorder
+app.get("/ordersstaus/:id",(req, res)=>{
+
+  orderDB.getorderbyid(req.params.id).then(data=>res.send(data))
 })
 //
 app.listen(3000, () => console.log("listen"));

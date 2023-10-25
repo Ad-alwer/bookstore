@@ -65,8 +65,15 @@ async function changestatus(id,val,code){
  
 }
 
+
+async function getorderbyid(id){
+  let order = await Order.findById(id)
+  return order
+   
+}
 module.exports={
     addorder,
     getorders,
-    changestatus
+    changestatus,
+    getorderbyid
 }

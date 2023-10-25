@@ -418,6 +418,7 @@ export default {
         personaldata:this.personaldata,
         paydata:this.pricedata,
         productdata:this.basket,
+        
 
         
       }).then(res=>{

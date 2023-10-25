@@ -15,7 +15,7 @@ const bookstoreschema = new mongoose.Schema({
   oreders: [],
   hmorders: { type: Number, default: 0 },
   favourite: [],
-  personaldata:[],
+  personaldata: [],
   img: { type: mongoose.Schema.ObjectId, default: null },
 });
 bookstoreschema.plugin(timestamp);
@@ -173,6 +173,28 @@ async function addtocard(id, book) {
     };
   }
 }
+async function addorders( productdata,personaldata, id,orderid) {
+  let user = await User.findById(id)
+  let userorders = user.oreders;
+  let neworder = {
+    productdata,
+    personaldata,
+    orderid
+  };
+  
+
+  userorders.push(neworder);
+ await User.findByIdAndUpdate(id, {
+    $set: {
+      oreders: userorders,
+    },
+  });
+  return {
+    status:true
+  }
+ 
+
+}
 
 async function plusnubmer(id, bookid) {
   let user = await User.findById(id);
@@ -183,11 +205,10 @@ async function plusnubmer(id, bookid) {
     $set: {
       basket,
     },
-    
   });
-  return{
-    status:true
-  }
+  return {
+    status: true,
+  };
 }
 async function minusnubmer(id, bookid) {
   let user = await User.findById(id);
@@ -198,34 +219,32 @@ async function minusnubmer(id, bookid) {
     $set: {
       basket,
     },
-    
   });
-  return{
-    status:true
-  }
+  return {
+    status: true,
+  };
 }
 
 async function deletbasket(id, bookid) {
   let user = await User.findById(id);
   let basket = user.basket;
   let index = basket.findIndex((e) => e.id === bookid);
-  basket.splice(index,1)
+  basket.splice(index, 1);
   await User.findByIdAndUpdate(id, {
     $set: {
       basket,
     },
-    
   });
-  return{
-    status:true
-  }
+  return {
+    status: true,
+  };
 }
 
-async function getuser (jwt){
-  const user = await getbyjwt(jwt)
-  return{
-    data:user.data
-  }
+async function getuser(jwt) {
+  const user = await getbyjwt(jwt);
+  return {
+    data: user.data,
+  };
 }
 module.exports = {
   signup,
@@ -238,5 +257,6 @@ module.exports = {
   plusnubmer,
   minusnubmer,
   deletbasket,
-  getuser
+  getuser,
+  addorders,
 };
