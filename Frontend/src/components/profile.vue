@@ -60,7 +60,7 @@
               <tr>
                 <th class="text-center w-75">کد سفارش</th>
                 <th class="text-center w-50">وضعیت</th>
-                <th class="text-center">مشاهده جزییات</th>
+                <th class="text-center w-50">جزییات</th>
               </tr>
             </thead>
             <tbody>
@@ -104,6 +104,15 @@
           </table>
         </div>
       </div>
+      <div class="d-flex justify-content-center mb-4">
+        <Icon
+          icon="material-symbols:home-outline"
+          width="35"
+          height="35"
+          @click="goto('/')"
+          class="mt-5 pointer "
+        />
+      </div>
     </div>
     <popup :data="data" @closepopup="showpopup = false" v-if="showpopup" />
   </div>
@@ -137,18 +146,18 @@ export default {
       axios.get(`${apiaddress}profile/${jwt}`).then((res) => {
         this.orders = res.data.oreders.slice(0, 5);
         this.personaldata = res.data.personaldata;
-        console.log(this.orders);
+
         this.orders.forEach((e) => {
           axios
             .get(`${apiaddress}ordersstaus/${e.orderid}`)
             .then((data) => (e.status = data.data.status));
         });
       });
-    }else{
+    } else {
       Toast.fire({
-                icon: "error",
-                title: `لطفا ثبت نام کنید`,
-              });
+        icon: "error",
+        title: `لطفا ثبت نام کنید`,
+      });
     }
   },
   data() {
@@ -184,5 +193,8 @@ export default {
 }
 .blur {
   filter: blur(4px);
+}
+tr {
+  height: 30px;
 }
 </style>

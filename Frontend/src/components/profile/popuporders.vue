@@ -14,18 +14,25 @@
         <table class="table table-bordered mt-4 ">
           <thead>
             <tr>
-                <th>نام کتاب</th>
-                <th>قیمت</th>
-                <th>تعداد</th>
+                <th class="text-center">نام کتاب</th>
+                <th class="text-center">قیمت</th>
+                <th class="text-center">تعداد</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="x in data" :key="x">
-                <th> {{ x.name }}</th>
-                <th>{{x.value}}</th>
+                <th class="text-center"> {{ x.name }}</th>
+                <th class="text-center">{{x.value}}</th>
                 <th>{{ x.number }}</th>
             </tr>
           </tbody>
+          <tfoot class="table-dark">
+            <tr>
+              <th class="text-center">مجموع</th>
+              <th class="text-center" colspan="2">{{ some }} تومان</th>
+
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
@@ -37,14 +44,19 @@
     name: "popuprequest",
   
     mounted() {
+      
       document.addEventListener("keydown", this.esc);
+      this.data.forEach(e => {
+        this.some =this.some + e.value
+        
+      });
      
       
       
     },
     data(){
       return{
-         
+         some:null
       }
     },
   

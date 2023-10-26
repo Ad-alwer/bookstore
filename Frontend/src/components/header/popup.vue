@@ -17,7 +17,7 @@
             <Icon icon="ph:user" width="20" height="20" class=" " />
             <span>حساب کاربری</span>
           </li>
-          <li class="d-flex gap-4 py-3" @click="goto('orders')">
+          <li class="d-flex gap-4 py-3" @click="goto('profile/orders')">
             <Icon icon="icon-park-outline:buy" width="20" height="20" />
             <span>سفارش ها</span>
           </li>
