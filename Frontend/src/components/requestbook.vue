@@ -18,7 +18,7 @@
       ref="desc"
     ></textarea>
     <div class="mt-5 d-flex justify-content-center">
-      <button class="btn px-4 py-2 text-white mt-4 btn-teal--teal " @click="save">
+      <button class="btn px-4 py-2 text-white mt-4 btn-teal " @click="save">
         ذخیره
       </button>
     </div>
@@ -100,7 +100,7 @@ textarea {
   /* width: 600px;
   height: 200px; */
 }
-.btn-teal--teal {
+.btn-teal {
   background-color: var(--teal);
 }
 .home {

@@ -115,6 +115,19 @@ import { info } from "../../config/default";
 import { Icon } from "@iconify/vue";
 import funcs from "./login.vue";
 import popup from "./profile/popuporders.vue";
+import Swal from "sweetalert2";
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
@@ -131,6 +144,11 @@ export default {
             .then((data) => (e.status = data.data.status));
         });
       });
+    }else{
+      Toast.fire({
+                icon: "error",
+                title: `لطفا ثبت نام کنید`,
+              });
     }
   },
   data() {

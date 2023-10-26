@@ -30,6 +30,7 @@ import about from "./components/about.vue"
 import questions from "./components/questions.vue";
 import favourite from "./components/profile/favourite.vue"
 import profile from "./components/profile.vue"
+import personaldata from './components/profile/Personaldata.vue'
 
 
 // import slider from "./components/profile/menu.vue";
@@ -47,6 +48,8 @@ const routes = [
   { path: "/about", component: about },
   { path: "/profile/favourite", component: favourite },
   { path: "/profile", component: profile },
+  { path: "/profile/personaldata", component: personaldata },
+
 
 
 

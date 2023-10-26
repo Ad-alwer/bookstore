@@ -30,20 +30,7 @@
         />
       </div>
 
-      <div class="div-search d-flex order-1 justify-content-center">
-        <input
-          type="text"
-          class="form-control border-black px-2 rounded-3"
-          maxlength="30"
-        />
-        <Icon
-          @click="loginpage"
-          class="icon-search mt-2"
-          icon="material-symbols:search"
-          width="22"
-          height="22"
-        />
-      </div>
+     
 
       <div class="div-menu order-0 d-flex gap-5 pt-2 me-2 fw-bold fs-5">
         <a class="menu-item text-center" href="/">خانه</a>
@@ -131,16 +118,7 @@ export default {
 .div-search {
   flex: 4;
 }
-.div-search input {
-  max-width: 350px;
-}
 
-.icon-search {
-  position: relative;
-  left: 6%;
-  z-index: 999;
-  cursor: pointer;
-}
 .div-menu {
   flex: 5;
 }

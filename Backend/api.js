@@ -287,8 +287,6 @@ app.post("/order/add", (req, res) => {
   ordertimeDB.adddata(persianMonth, persianYear);
   bookDB.bookaddorder(req.body.productdata[0].id, monthorders);
 
- 
-
   orderDB
     .addorder(
       req.body.personaldata,
@@ -296,14 +294,14 @@ app.post("/order/add", (req, res) => {
       req.body.productdata,
       ordersdate
     )
-    .then(async(data) => {
-     await userDB.addorders(
+    .then(async (data) => {
+      await userDB.addorders(
         req.body.productdata,
         req.body.personaldata,
         req.body.personaldata[0].userid,
         data.data._id
-      )
-      res.send(data.data)
+      );
+      res.send(data.data);
     });
 });
 //
@@ -438,9 +436,17 @@ app.get("/book/:id", (req, res) => {
 //
 
 //Get statusorder
-app.get("/ordersstaus/:id",(req, res)=>{
-
-  orderDB.getorderbyid(req.params.id).then(data=>res.send(data))
-})
+app.get("/ordersstaus/:id", (req, res) => {
+  orderDB.getorderbyid(req.params.id).then((data) => res.send(data));
+});
 //
+
+// Save personaldata
+app.post("/personaldata", (req, res) => {
+  userDB
+    .savepersonaldata(req.body.jwt, req.body.personaldata)
+    .then((data) => res.send(data));
+});
+//
+
 app.listen(3000, () => console.log("listen"));

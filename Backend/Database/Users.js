@@ -173,27 +173,24 @@ async function addtocard(id, book) {
     };
   }
 }
-async function addorders( productdata,personaldata, id,orderid) {
-  let user = await User.findById(id)
+async function addorders(productdata, personaldata, id, orderid) {
+  let user = await User.findById(id);
   let userorders = user.oreders;
   let neworder = {
     productdata,
     personaldata,
-    orderid
+    orderid,
   };
-  
 
   userorders.push(neworder);
- await User.findByIdAndUpdate(id, {
+  await User.findByIdAndUpdate(id, {
     $set: {
       oreders: userorders,
     },
   });
   return {
-    status:true
-  }
- 
-
+    status: true,
+  };
 }
 
 async function plusnubmer(id, bookid) {
@@ -246,6 +243,18 @@ async function getuser(jwt) {
     data: user.data,
   };
 }
+
+async function savepersonaldata(jwt, personaldata) {
+  const user = await getbyjwt(jwt);
+  await User.findByIdAndUpdate(user.data._id, {
+    $set: {
+      personaldata,
+    },
+  });
+  return {
+    status: true,
+  };
+}
 module.exports = {
   signup,
   login,
@@ -259,4 +268,5 @@ module.exports = {
   deletbasket,
   getuser,
   addorders,
+  savepersonaldata,
 };
