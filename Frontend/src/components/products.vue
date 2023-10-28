@@ -2,18 +2,27 @@
   <div class="container-fluid">
     <siteheader />
     <div
-      class="d-flex align-items-baseline justify-content-start w-100 mx-5 mt-5"
+      class="d-flex  sort-div align-items-baseline justify-content-start w-100 mx-5 mt-5"
     >
-      <div class="w-25">
+      <div class="w-25 filter-parent">
         <Icon
           icon="mdi:filter"
           width="25"
           height="25"
-          class="pointer"
+          class="pointer "
           @click="showsort = true"
         />
       </div>
-      <div class="mx-5 px-3 mt-5 d-flex w-100">
+      <div class="w-25 filter-parent-responsive">
+        <Icon
+          icon="mdi:filter"
+          width="20"
+          height="20"
+          class="pointer "
+          @click="showsort = true"
+        />
+      </div>
+      <div class="mx-5 px-3 mt-5 d-flex w-100 sort-parent">
         <p
           :class="
             sort == 'mostbuy'
@@ -68,7 +77,7 @@
     </div>
     <hr class="mt-5 px-5" />
     <div>
-      <div class="d-flex gap-5 flex-wrap">
+      <div class="d-flex gap-5 flex-wrap product-parent ">
         <div
           class="card pointer"
           v-for="x in books"
@@ -342,5 +351,38 @@ img {
 }
 .color-red {
   color: var(--red);
+}
+.filter-parent-responsive{
+ display: none;
+}
+@media screen and (max-width: 767px) {
+
+.product-parent{
+ justify-content: center;
+ margin-bottom: 10px;
+ gap: 10px !important;
+
+}
+.sort-items{
+flex: 1;
+font-size: 15px !important;
+}
+.filter-parent{
+  display: none;
+}
+.filter-parent-responsive{
+ display: block;
+ width: 2% !important;
+
+}
+.sort-parent{
+  width: 90% !important;
+}
+.sort-div{
+  margin: 0 17px!important;
+}
+hr{
+  margin-top: 0 !important;
+}
 }
 </style>

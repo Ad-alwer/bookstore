@@ -1,7 +1,7 @@
 <template>
   <div id="parent" class="container">
     <h1 class="text-center mt-2">علاقه مندی ها</h1>
-    <div class="d-flex gap-5 flex-wrap mt-3">
+    <div class="d-flex gap-5 flex-wrap mt-3 product-parent">
       <div
         class="card pointer"
         v-for="x in books"
@@ -145,5 +145,13 @@ img {
   right: 7%;
   cursor: pointer;
  
+}
+@media screen and (max-width: 767px) {
+  .product-parent{
+ justify-content: center;
+ margin-bottom: 10px;
+ gap: 10px !important;
+
+}
 }
 </style>

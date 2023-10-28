@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-2">
-    <h2 class="text-center fs-1 mt-2">درباره ما</h2>
-    <p class="text-center px-4 fs-5 mt-5 text-secondary">
+    <h2 class="text-center fs-1 mt-4">درباره ما</h2>
+    <p class="text-center px-4 fs-5 mt-5 text-secondary text">
       شرکت ما از سال 1385 در زمیه فروش کتا کار خودش را شروع کرد لورم ایپسوم متن
       ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
       است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و
@@ -78,5 +78,11 @@ export default {
 }
 .text-secondary {
   color: #6c757d !important;
+}
+@media screen and (max-width: 767px) {
+  .text{
+    font-size: 19px !important;
+  }
+
 }
 </style>

@@ -4,17 +4,24 @@
     <div>
       <div>
         <div
-          class="d-flex gap-5 border-2 rounded-4 pointer form-control mx-auto mt-5 w-50"
+          class="d-flex gap-5 border-2 rounded-4 pointer form-control mx-auto parent mt-5 w-50"
           @click="open('question1')"
         >
           <Icon
             icon="mingcute:down-fill"
             :rotate="question1 ? 2 : 4"
-            class=""
+            class="icn"
             width="25"
             height="25"
           />
-          <div class="justify-content-center d-flex w-75">
+          <Icon
+            icon="mingcute:down-fill"
+            :rotate="question2 ? 2 : 4"
+            class="icn-responsive"
+            width="20"
+            height="20"
+          />
+          <div class="justify-content-center d-flex w-75 title-parent">
             <span class="fs-5"> ایا مرجوع کالا ممکن است؟</span>
           </div>
         </div>
@@ -35,16 +42,24 @@
       </div>
       <div>
         <div
-          class="d-flex gap-5 border-2 rounded-4 pointer form-control mx-auto mt-5 w-50"
+          class="d-flex gap-5 border-2 rounded-4 pointer form-control mx-auto mt-5 w-50 parent"
           @click="open('question2')"
         >
           <Icon
             icon="mingcute:down-fill"
             :rotate="question2 ? 2 : 4"
-            class=""
+            class="icn"
             width="25"
             height="25"
           />
+          <Icon
+            icon="mingcute:down-fill"
+            :rotate="question2 ? 2 : 4"
+            class="icn-responsive"
+            width="20"
+            height="20"
+          />
+
           <div class="justify-content-center d-flex w-75">
             <span class="fs-5"
               >کتاب هایی که در سایت موجود نیستند را چگونه میتوانیم تهیه
@@ -70,15 +85,22 @@
       </div>
       <div>
         <div
-          class="d-flex gap-5 border-2 rounded-4 pointer form-control mx-auto mt-5 w-50"
+          class="d-flex gap-5 border-2 rounded-4 pointer form-control mx-auto mt-5 w-50 parent"
           @click="open('question3')"
         >
           <Icon
             icon="mingcute:down-fill"
             :rotate="question3 ? 2 : 4"
-            class=""
+            class="icn"
             width="25"
             height="25"
+          />
+          <Icon
+            icon="mingcute:down-fill"
+            :rotate="question2 ? 2 : 4"
+            class="icn-responsive"
+            width="20"
+            height="20"
           />
           <div class="justify-content-center d-flex w-75">
             <span class="fs-5"> هزینه ازسال و زمان تحویل به چه صورت است؟ </span>
@@ -116,7 +138,7 @@ import { Icon } from "@iconify/vue";
 export default {
   data() {
     return {
-      question1: false,
+      question1: true,
       question2: false,
       question3: false,
     };
@@ -151,5 +173,31 @@ textarea {
   bottom: 7%;
   right: 7%;
   cursor: pointer;
+}
+.icn-responsive {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  input {
+    width: 180px !important;
+  }
+  span {
+    font-size: 14px !important;
+  }
+  .parent {
+    width: 450px !important;
+    padding: 10px 8px !important;
+  }
+  .icn {
+    display: none;
+  }
+  .icn-responsive {
+    display: block !important;
+  }
+  textarea{
+    height: 150px !important;
+    width: 300px !important;
+   
+  }
 }
 </style>
