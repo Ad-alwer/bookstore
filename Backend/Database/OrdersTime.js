@@ -7,7 +7,7 @@ mongoose.connect(config.info.db.address).then(() => console.log("conect"));
 const bookstoreschema = new mongoose.Schema({
   month: String,
   year: Number,
-  number:Number
+  number: Number,
 });
 bookstoreschema.plugin(timestamp);
 
@@ -17,48 +17,43 @@ async function adddata(month, year) {
   const yearcheck = await Orderdate.find({ year });
   console.log(yearcheck);
   if (yearcheck.length > 0) {
-    
-    let monthscheck = yearcheck.find(e=>{
-        return e.month == month
-    })
+    let monthscheck = yearcheck.find((e) => {
+      return e.month == month;
+    });
     if (monthscheck) {
-        let val =monthscheck.number + 1
-        
-        await Orderdate.findByIdAndUpdate(monthscheck._id, {
-            $set: {
-             number:val
-            },
-          });
+      let val = monthscheck.number + 1;
+
+      await Orderdate.findByIdAndUpdate(monthscheck._id, {
+        $set: {
+          number: val,
+        },
+      });
+    } else {
+      const data = new Orderdate({
+        month,
+        year,
+        number: 1,
+      });
+      await data.save();
     }
-    else {
-        
-        const data = new Orderdate({
-          month,
-          year,
-          number:1
-        });
-        await data.save();
-      }
-    }
-    
-  else {
+  } else {
     const data = new Orderdate({
       month,
       year,
-      number:1
+      number: 1,
     });
     await data.save();
   }
 }
-async function getorderstimes(){
-  let oreders =await Orderdate.find()
-  console.log(oreders);
-  return{
-    data:oreders
-  }
+async function getorderstimes() {
+  let orders = await Orderdate.find();
+  console.log(orders);
+  return {
+    data: orders,
+  };
 }
 
 module.exports = {
   adddata,
-  getorderstimes
+  getorderstimes,
 };

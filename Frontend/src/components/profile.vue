@@ -110,7 +110,7 @@
           width="35"
           height="35"
           @click="goto('/')"
-          class="mt-5 pointer "
+          class="mt-5 pointer"
         />
       </div>
     </div>
@@ -144,7 +144,7 @@ export default {
   beforeMount() {
     if (jwt) {
       axios.get(`${apiaddress}profile/${jwt}`).then((res) => {
-        this.orders = res.data.oreders.slice(0, 5);
+        this.orders = res.data.orders.slice(0, 5);
         this.personaldata = res.data.personaldata;
 
         this.orders.forEach((e) => {

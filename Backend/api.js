@@ -162,7 +162,7 @@ app.get("/books", (req, res) => {
 //Get book by id
 app.get("/book/:id", (req, res) => {
   bookDB.getbookbyid(req.params.id).then((data) => res.send(data.book));
-  // console.log(req.params.id);
+  
 });
 //
 

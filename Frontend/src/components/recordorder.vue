@@ -83,7 +83,7 @@
           name=""
           id=""
           placeholder="آدرس"
-          ref="address"
+          ref="adress"
           class="form-control border borde- border-secondary"
           :disabled="which == 'default' ? true : false"
         />
@@ -113,7 +113,7 @@
           />
         </div>
         <div class="d-flex justify-content-center mt-3">
-          <button class="btn px-3 py-2 bg-red" @click.prevent="gotopay">
+          <button class="btn px-3 py-2 btn-red" @click.prevent="gotopay">
             مرحله بعد
           </button>
         </div>
@@ -138,7 +138,7 @@
           </tbody>
         </table>
 
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 detail-div">
           <div class="border border-1 border-black rounded-3 p-1 w-75">
             <table class="table mb-0 pb-0 w-100">
               <tbody>
@@ -187,7 +187,7 @@
           </div>
         </div>
         <div class="mt-3 d-flex justify-content-center">
-          <button class="btn bg-red px-3 py-2" @click="finishpay">
+          <button class="btn btn-red px-3 py-2" @click="finishpay">
             پرداخت
           </button>
         </div>
@@ -206,16 +206,14 @@
           <table class="table w-50">
             <tr>
               <td class="text-center w-25">کد رهگیری</td>
-              <td class="text-center w-25" >{{ code }}</td>
+              <td class="text-center w-25">{{ code }}</td>
               <td class="text-center w-25">
                 <Icon
                   icon="mingcute:copy-line"
                   class="pointer"
                   width="40"
                   height="40"
-                  @click="
-                   copy
-                  "
+                  @click="copy"
                 />
               </td>
             </tr>
@@ -256,6 +254,12 @@ export default {
       this.personaldata = res.data.data.personaldata;
       if (this.personaldata.length < 1) {
         this.which = "insert";
+      } else {
+        this.$refs.firstname.value = this.personaldata[0].firstname;
+        this.$refs.lastname.value = this.personaldata[0].lastname;
+        this.$refs.adress.value = this.personaldata[0].adress;
+        this.$refs.phonenum.value = this.personaldata[0].phonenum;
+        this.$refs.homenum.value = this.personaldata[0].homenum;
       }
       this.basket.forEach((e) => {
         axios.get(`${apiaddress}book/${e.id}`).then((res) => {
@@ -305,12 +309,18 @@ export default {
       discount: 0,
       pricedata: [],
       user: [],
-      code:''
+      code: "",
     };
   },
   methods: {
     radiobtnhandler: function (e) {
       if (e.target.value == "option1") {
+        this.$refs.firstname.value = null;
+        this.$refs.lastname.value = null;
+        this.$refs.adress.value = null;
+        this.$refs.phonenum.value = null;
+        this.$refs.homenum.value = null;
+
         this.which = "insert";
       } else {
         this.which = "default";
@@ -318,7 +328,10 @@ export default {
     },
     gotopay: function () {
       if (this.which == "default") {
-        this.step = "pay";
+        (this.personaldata[0].userid = this.user._id),
+          (this.personaldata[0].username = this.user.username),
+          (this.personaldata[0].email = this.user.email),
+          (this.step = "pay");
       } else {
         const regexphonenum = /^09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}$/;
         const regexhomenum = /^0[0-9]{2,}[0-9]{7,}$/;
@@ -326,7 +339,7 @@ export default {
         if (
           this.$refs.firstname.value &&
           this.$refs.lastname.value &&
-          this.$refs.address.value &&
+          this.$refs.adress.value &&
           this.$refs.phonenum.value
         ) {
           if (
@@ -339,7 +352,7 @@ export default {
               email: this.user.email,
               firstname: this.$refs.firstname.value,
               lastname: this.$refs.lastname.value,
-              adress: this.$refs.address.value,
+              adress: this.$refs.adress.value,
               phonenum: this.$refs.phonenum.value,
               homenum: this.$refs.homenum.value,
             });
@@ -414,22 +427,21 @@ export default {
         discount: this.discount,
         finalpay: this.finallprice(),
       });
-      axios.post(`${apiaddress}order/add`, {
-        personaldata:this.personaldata,
-        paydata:this.pricedata,
-        productdata:this.basket,
-        
 
-        
-      }).then(res=>{
-        this.code=res.data._id
-          this.step = 'status'
-      })
-      
+      axios
+        .post(`${apiaddress}order/add`, {
+          personaldata: this.personaldata,
+          paydata: this.pricedata,
+          productdata: this.basket,
+        })
+        .then((res) => {
+          this.code = res.data._id;
+          this.step = "status";
+        });
     },
-    copy:function(){
-        navigator.clipboard.writeText(this.code)
-    }
+    copy: function () {
+      navigator.clipboard.writeText(this.code);
+    },
   },
 };
 </script>
@@ -456,7 +468,7 @@ input {
   outline: none;
   box-shadow: none;
 }
-.bg-red {
+.btn-red {
   cursor: pointer;
   color: white;
   background-color: var(--red);
@@ -470,6 +482,20 @@ input {
 .pdetail {
   font-size: 14px;
 }
+.text-secondary {
+  color: #6c757d !important;
+}
+.border-secondary {
+  border-color: #63757d !important
+ ;
+}
+
+@media screen and (max-width: 767px) {
+  .detail-div {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 </style>
 
-//TODO info //TODO FIX UNLIMIT DISCOUNT BUG
+//TODO FIX UNLIMIT DISCOUNT BUG

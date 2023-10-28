@@ -12,7 +12,7 @@ const bookstoreschema = new mongoose.Schema({
   isadmin: { type: Boolean, default: false },
   ismaster: { type: Boolean, default: false },
   basket: [],
-  oreders: [],
+  orders: [],
   hmorders: { type: Number, default: 0 },
   favourite: [],
   personaldata: [],
@@ -174,8 +174,9 @@ async function addtocard(id, book) {
   }
 }
 async function addorders(productdata, personaldata, id, orderid) {
-  let user = await User.findById(id);
-  let userorders = user.oreders;
+
+  let user = await User.findById(id); 
+  let userorders = user.orders;
   let neworder = {
     productdata,
     personaldata,
@@ -185,7 +186,7 @@ async function addorders(productdata, personaldata, id, orderid) {
   userorders.push(neworder);
   await User.findByIdAndUpdate(id, {
     $set: {
-      oreders: userorders,
+      orders: userorders,
     },
   });
   return {

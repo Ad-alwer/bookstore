@@ -11,10 +11,10 @@ export default {
 
 <style>
 :root {
-  --red: #fc345c;
-  --teal: #49beb7;
-  --mint: #afffdf;
-  --light: #eafff7;
+  --red: #fc345c !important;
+  --teal: #49beb7 !important;
+  --mint: #afffdf !important;
+  --light: #eafff7 !important;
 }
 @import url('https://v1.fontapi.ir/css/Shabnam');
 *
@@ -39,12 +39,6 @@ input[type=number]{
    font-family: 'B Koodak';  
 
 }
-.text-secondary{
-  color: #6C8BC0 !important
-}
-.border-secondary{
-  border-color: #6C8BC0 !important
- ;
-}
+
 
 </style>

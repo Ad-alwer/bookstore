@@ -1,7 +1,14 @@
 <template>
   <div class="container">
     <div class="p-4 rounded-4 mt-2 position-relative">
-        <Icon icon="formkit:arrowleft" width="30" height="30" class="float-start mx-5 pointer " color="#6c757d" @click="back" />
+      <Icon
+        icon="formkit:arrowleft"
+        width="30"
+        height="30"
+        class="float-start mx-5 pointer"
+        color="#6c757d"
+        @click="back"
+      />
       <h1 class="text-center fs-3 text-secondary mt-5">سفارش ها</h1>
 
       <div class="mx-2">
@@ -10,7 +17,7 @@
             <tr>
               <th class="text-center w-75">کد سفارش</th>
               <th class="text-center w-50">وضعیت</th>
-              <th class="text-center w-50">جزییات </th>
+              <th class="text-center w-50">جزییات</th>
             </tr>
           </thead>
           <tbody>
@@ -40,7 +47,6 @@
               </th>
             </tr>
           </tbody>
-         
         </table>
       </div>
     </div>
@@ -80,7 +86,7 @@ export default {
   beforeMount() {
     if (jwt) {
       axios.get(`${apiaddress}profile/${jwt}`).then((res) => {
-        this.orders = res.data.oreders;
+        this.orders = res.data.orders;
         this.orders.forEach((e) => {
           axios
             .get(`${apiaddress}ordersstaus/${e.orderid}`)
@@ -98,7 +104,7 @@ export default {
     return {
       orders: [],
       popshow: false,
-      data:[]
+      data: [],
     };
   },
   methods: {
@@ -106,9 +112,9 @@ export default {
       this.data = this.orders[i].productdata;
       this.popshow = true;
     },
-    back:function(){
-        location.href='/profile'
-    }
+    back: function () {
+      location.href = "/profile";
+    },
   },
 };
 </script>
