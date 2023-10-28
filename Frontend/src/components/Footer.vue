@@ -2,11 +2,11 @@
   <footer class="py-4 mt-4" id="parent ">
     <div class="container d-flex justify-content-center gap-5">
       <div class="flex-child">
-        <p class="text-center fs-2">کتاب ها</p>
+        <p class=" text-center  fs-2">کتاب ها</p>
         <ul>
           <li
             v-for="x in books"
-            class="list-unstyled text-center pt-2 pointer li"
+            class="list-unstyled text-center pt-2 pointer li "
             :key="x"
             @click="showbook(x._id)"
           >
@@ -15,11 +15,11 @@
         </ul>
       </div>
       <div class="flex-child">
-        <p class="text-center fs-2">دسته بندی</p>
+        <p class="text-center  fs-2">دسته بندی</p>
         <ul>
           <li
             v-for="x in genres"
-            class="list-unstyled text-center pt-2 pointer li"
+            class="list-unstyled text-center pt-2 pointer li "
             :key="x"
             @click="gotoproducts(x)"
           >
@@ -28,11 +28,11 @@
         </ul>
       </div>
       <div class="flex-child">
-        <p class="text-center fs-2">دسترسی سریع</p>
+        <p class="text-center  fs-2">دسترسی سریع</p>
         <ul>
           <li
             v-for="x in link"
-            class="list-unstyled text-center pt-2 pointer li"
+            class="list-unstyled text-center pt-2 pointer li "
             :key="x"
             @click="linkhandeler(x.adress)"
           >
@@ -42,7 +42,7 @@
       </div>
     </div>
     <hr class="mx-5 border-1 border border-secondary" />
-    <div class="container d-flex justify-content-center gap-4">
+    <div class="container d-flex justify-content-center gap-4 icn">
       <a href="" class="text-decoration-none text-dark">
         <Icon   icon="mdi:instagram" width="40" height="40" />
       </a>
@@ -56,6 +56,21 @@
         <Icon   icon="ic:baseline-telegram" width="40" height="40" />
       </a>
     </div>
+    <div class="container d-flex justify-content-center gap-4 icn-responsive">
+      <a href="" class="text-decoration-none text-dark">
+        <Icon   icon="mdi:instagram" width="30" height="30" />
+      </a>
+      <a href="https://github.com/Ad-alwer" class="text-decoration-none text-dark">
+        <Icon   icon="mdi:github" width="30" height="30" />
+      </a>
+      <a href="https://www.linkedin.com/in/ad-alwer/" class="text-decoration-none text-dark">
+        <Icon   icon="mdi:linkedin" width="30" height="30" />
+      </a>
+      <a href="https://t.me/Alwerco" class="text-decoration-none text-dark">
+        <Icon   icon="ic:baseline-telegram" width="30" height="30" />
+      </a>
+    </div>
+    
   </footer>
 </template>
 
@@ -118,6 +133,30 @@ li:hover {
 }
 .flex-child {
   flex-grow: 1;
+}
+
+.icn-responsive{
+  display: none;
+}
+
+
+@media screen and (max-width: 767px) {
+
+  li {
+  font-size: 17px;
+  color: gray;
+}
+p{
+  font-size: 19px !important;
+  width: 75%;
+}
+.icn{
+  display: none !important;
+}
+.icn-responsive{
+  margin-top: -15px !important;
+  display: block;
+}
 }
 
 </style>

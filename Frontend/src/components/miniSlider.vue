@@ -2,7 +2,9 @@
   <div id="parent" class="d-flex">
     <div class="w-25 d-flex justify-content-center align-items-center">
       <div class="">
-        <p class="fs-1 text-center text-white mb-0" ref="p">پرفروش ترین</p>
+        <p class="fs-1 text-center text-white mb-0 p" >{{ p }} </p>
+        <p class="fs-2 text-center text-white mb-0 p-responsive" > {{ p }}</p>
+
         <p class="fs-1 text-center text-white mt-0">کتاب ها</p>
       </div>
     </div>
@@ -16,35 +18,74 @@
         @swiper="onSwiper"
         @slideChange="onSlideChange"
         :autoplay="autoplay"
-        
-        class="w-100"
+        class="w-100 px-2 slider"
       >
         <swiper-slide
-        @click="gotobook(x._id)"
-        v-for="x in arr"
-        :key="x._id"
+          @click="gotobook(x._id)"
+          v-for="x in arr"
+          :key="x._id"
           data-swiper-autoplay="2000"
           class="slide rounded-4 pointer"
           style=""
         >
           <div class="d-flex justify-content-center">
             <img
-            :src="require(`../assets/${x.imgs[0].adress}`)"
+              :src="require(`../assets/${x.imgs[0].adress}`)"
               class="img-fluid rounded-3 pt-2"
               alt=""
             />
-          </div >
-          <p class="text-center mt-3 mb-0">{{x.name}}</p>
-          
+          </div>
+          <p class="text-center mt-3 mb-0">{{ x.name }}</p>
+
           <div v-if="x.discount" class="mt-2">
-            <p class="text-center p-0 m-0 discount text-secondary">{{x.price}}</p>
-            <p class="text-center"> {{ x.value }} تومان</p>
+            <p class="text-center p-0 m-0 discount text-secondary">
+              {{ x.price }}
+            </p>
+            <p class="text-center">{{ x.value }} تومان</p>
           </div>
           <div v-else class="mt-2">
-            <p class="text-center"> {{ x.value }} تومان</p>
-        </div>
+            <p class="text-center">{{ x.value }} تومان</p>
+          </div>
         </swiper-slide>
-       
+      </swiper>
+      <swiper
+        :modules="modules"
+        :slides-per-view="2"
+        :space-between="20"
+        loop="true"
+        :grid="grid"
+        @swiper="onSwiper"
+        @slideChange="onSlideChange"
+        :autoplay="autoplay"
+        class="w-100 px-2 slider-responsive"
+      >
+        <swiper-slide
+          @click="gotobook(x._id)"
+          v-for="x in arr"
+          :key="x._id"
+          data-swiper-autoplay="2000"
+          class="slide rounded-4 pointer"
+          style=""
+        >
+          <div class="d-flex justify-content-center">
+            <img
+              :src="require(`../assets/${x.imgs[0].adress}`)"
+              class="img-fluid rounded-3 pt-2"
+              alt=""
+            />
+          </div>
+          <p class="text-center mt-3 mb-0 px-2">{{ x.name }}</p>
+
+          <div v-if="x.discount" class="mt-2">
+            <p class="text-center p-0 m-0 discount text-secondary">
+              {{ x.price }}
+            </p>
+            <p class="text-center">{{ x.value }} تومان</p>
+          </div>
+          <div v-else class="mt-2">
+            <p class="text-center">{{ x.value }} تومان</p>
+          </div>
+        </swiper-slide>
       </swiper>
     </div>
   </div>
@@ -100,11 +141,11 @@ export default {
 
       if (this.sort == "mostbuy") {
         this.arr = [];
-        this.$refs.p.innerHTML = "پرفروش ترین";
+        this.p = "پرفروش ترین";
         this.arr = res.data.sort((a, b) => b.orders - a.orders).slice(0, 10);
       } else if (this.sort == "discount") {
         this.arr = [];
-        this.$refs.p.innerHTML = "بیشترین تخفیف";
+        this.p = "بیشترین تخفیف";
 
         res.data.forEach((e) => {
           if (e.discount) {
@@ -115,18 +156,19 @@ export default {
         this.arr.sort((a, b) => b.discountval - a.discountval).slice(0, 10);
       } else if (this.sort == "newbooks") {
         this.arr = [];
-        this.$refs.p.innerHTML = " جدید ترین";
+        this.p = " جدید ترین";
         this.arr = res.data
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 10);
       } else {
         this.arr = [];
-        this.$refs.p.innerHTML = " مرتبط ترین";
+        this.p = " مرتبط ترین";
 
         let index = res.data.findIndex((e) => e._id === this.id);
-         res.data.splice(index, 1)
-        res.data.forEach(e=>e.genre === this.genre ? this.arr.push(e): null )
-        
+        res.data.splice(index, 1);
+        res.data.forEach((e) =>
+          e.genre === this.genre ? this.arr.push(e) : null
+        );
       }
     });
   },
@@ -139,9 +181,10 @@ export default {
         delay: 2000,
       },
       arr: [],
+      p:null
     };
   },
-    props: ["sort","bookid","genre"],
+  props: ["sort", "bookid", "genre"],
   components: {
     Swiper,
     SwiperSlide,
@@ -160,9 +203,9 @@ export default {
     };
   },
   methods: {
-    gotobook:function(data){
-        location.href = `/book/${data}`;
-    }
+    gotobook: function (data) {
+      location.href = `/book/${data}`;
+    },
   },
 };
 </script>
@@ -177,10 +220,31 @@ img {
 }
 .slide {
   height: 220px;
+  width: 180px !important;
   background-color: white;
 }
 .discount {
   text-decoration: line-through var(--red) 2px;
   font-size: 12px;
+}
+.slider-responsive {
+  display: none;
+}
+.p-responsive{
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .slider {
+    display: none !important;
+  }
+  .slider-responsive{
+    display: block;
+  }
+  .p-responsive{
+  display: block;
+}
+.p{
+  display: none;
+}
 }
 </style>

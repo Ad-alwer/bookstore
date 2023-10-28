@@ -4,8 +4,9 @@
       <div
         class="d-flex gap-4 pt-2 align-middle div-user order-2 justify-content-center"
       >
+        <Icon icon="material-symbols:menu" width="30" height="30" class="icn-menu pointer" @click="menushow =true" />
         <Icon
-          class="btns"
+          class="btns "
           icon="mdi:shopping-outline"
           width="30"
           height="30"
@@ -13,7 +14,7 @@
         />
 
         <Icon
-          class="btns"
+          class="btns "
           icon="iconamoon:profile-circle-fill"
           @click="profileshow = !profileshow"
           v-if="logined"
@@ -21,7 +22,7 @@
           height="30"
         />
         <Icon
-          class="btns"
+          class="btns "
           v-else
           icon="mdi:login"
           @click="loginpage"
@@ -30,8 +31,6 @@
         />
       </div>
 
-     
-
       <div class="div-menu order-0 d-flex gap-5 pt-2 me-2 fw-bold fs-5">
         <a class="menu-item text-center" href="/">خانه</a>
         <a class="menu-item text-center" href="/books">محصولات</a>
@@ -39,10 +38,11 @@
         <a class="menu-item2 text-center" href="/questions">سوالات متداول</a>
         <a class="menu-item text-center" href="/about">درباره ما</a>
       </div>
+      <div class="div-responsive"></div>
     </header>
     <popupprofile v-if="profileshow" @closepopup="profileshow = false" />
-    <nav 
-    v-if="navshow"
+    <nav
+      v-if="navshow"
       :class="
         profileshow
           ? 'd-flex justify-content-between mx-3 mt-2 blur'
@@ -56,12 +56,15 @@
       </div>
     </nav>
     <basket v-if="basketshow" @closepopup="basketshow = false" />
+    <resposivepopup v-if="menushow" @closepopup="menushow = false" />
+
   </div>
 </template>
 
 <script>
 import basket from "./basket.vue";
 import popupprofile from "./header/popup.vue";
+import resposivepopup from "./header/resposivepopup.vue";
 
 import { Icon } from "@iconify/vue";
 import funcs from "./login.vue";
@@ -89,14 +92,16 @@ export default {
       logined: null,
       basketshow: false,
       genres: [],
+      menushow:false
     };
   },
   components: {
     Icon,
     popupprofile,
     basket,
+    resposivepopup
   },
-  props:['navshow'],
+  props: ["navshow"],
   methods: {
     loginpage: function () {
       location.href = "/login";
@@ -144,5 +149,26 @@ a:hover {
 .span-genre:hover {
   color: var(--teal);
   cursor: pointer;
+}
+.icn-menu {
+  display: none !important
+}
+
+@media screen and (max-width: 767px) {
+  .div-menu {
+    display: none !important;
+  }
+  .icn-menu {
+  display: block !important;
+  position: absolute;
+  right: 10%;
+}
+.div-user{
+  justify-content: left !important
+}
+nav{
+  display: none !important
+}
+
 }
 </style>

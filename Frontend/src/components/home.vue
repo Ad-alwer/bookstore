@@ -2,7 +2,7 @@
   <div id="parent" class="container-fluid">
     <homeheader navshow="true" />
     <slider class="mt-4" />
-    <div class="my-5 d-flex justify-content-evenly">
+    <div class="my-5 d-flex justify-content-evenly card-parent gap-3">
       <div class="card">
         <div class="p-2 m-0">
           <div class="d-flex justify-content-center">
@@ -92,5 +92,16 @@ export default {
     background-color: inherit;
     border: none;
   }
+}
+
+
+@media screen and (max-width: 767px) {
+  .card-parent{
+    flex-direction: column;
+    align-items: center;
+    
+  
+  }
+
 }
 </style>

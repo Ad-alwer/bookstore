@@ -19,14 +19,19 @@
         centered-slides-bounds="true"
         centered-slides="true"
       >
-        <swiper-slide v-for="x in book.imgs" :key="x.name" data-swiper-autoplay="2000" class="w-100 slider" style="">
+        <swiper-slide
+          v-for="x in book.imgs"
+          :key="x.name"
+          data-swiper-autoplay="2000"
+          class="w-100 slider"
+          style=""
+        >
           <img
             :src="require(`../assets/${x.adress}`)"
             alt=""
             class="img-fluid rounded-4 w-100"
           />
         </swiper-slide>
-       
       </swiper>
     </div>
     <div class="mt-5 px-4" id="detail">
@@ -35,7 +40,7 @@
       <h5 class="text-center pt-1 text-secondary">{{ book.genre }}</h5>
       <div class="justify-content-center d-flex mx-5">
         <textarea
-          class="border-2 rounded-4 px-4 py-3 form-control text-secondary"
+          class="border-2 rounded-4 px-4 py-3 form-control text-secondary text-center"
           name=""
           disabled
           id=""
@@ -46,7 +51,10 @@
       </div>
 
       <div class="div-btn mt-4 d-flex">
-        <button @click="addtocard" class="px-3 py-2 text-center btn-red btn text-white">
+        <button
+          @click="addtocard"
+          class="px-3 py-2 text-center btn-red btn text-white"
+        >
           افزودن به سبد خرید
         </button>
         <Icon
@@ -78,7 +86,7 @@
             <span class="toman pe-1">تومان </span>
           </div>
           <div v-else>
-            <span ref="">{{ book.price }}</span>
+            <span class="price">{{ book.price }}</span>
             <span class="toman pe-1">تومان </span>
           </div>
         </div>
@@ -86,8 +94,14 @@
     </div>
 
     <!-- <div id="related book" class="py-1 px-2 mt-5 mx-3 rounded-4 mb-2"></div> -->
-    <miniSlider sort="related" :bookid="this.id" :genre="book.genre" id="relatedbook" class="mt-5"/>
-    <footerpage id="footer"/>
+    <miniSlider
+      sort="related"
+      :bookid="this.id"
+      :genre="book.genre"
+      id="relatedbook"
+      class="mt-5"
+    />
+    <footerpage id="footer" />
   </div>
   <popup
     v-if="loginpopup"
@@ -100,7 +114,7 @@
 import homeheader from "./header.vue";
 import { Icon } from "@iconify/vue";
 import popup from "./loginpopup.vue";
-import miniSlider from "./miniSlider.vue"
+import miniSlider from "./miniSlider.vue";
 import footerpage from "./Footer.vue";
 
 import {
@@ -125,11 +139,8 @@ import { info } from "../../config/default";
 
 import funcs from "./login.vue";
 
-
-
 let jwt = funcs.methods.getcookies("jwt");
 let apiaddress = info.fetch["address"];
-
 
 export default {
   name: "Product",
@@ -160,7 +171,7 @@ export default {
     Icon,
     popup,
     miniSlider,
-    footerpage
+    footerpage,
   },
   setup() {
     const onSwiper = (swiper) => {
@@ -189,54 +200,53 @@ export default {
     },
     favourite: function () {
       if (jwt) {
-        axios.post(`${apiaddress}favourite`, {
-          book: {
-            id: this.book._id,
-            name: this.book.name,
-          },
-          user: this.user._id,
-        }).then(res=>{
-            if(res.data.status){
-                this.favouritechecker()
+        axios
+          .post(`${apiaddress}favourite`, {
+            book: {
+              id: this.book._id,
+              name: this.book.name,
+            },
+            user: this.user._id,
+          })
+          .then((res) => {
+            if (res.data.status) {
+              this.favouritechecker();
             }
-        })
-       
+          });
       } else {
         this.loginpopup = true;
       }
     },
     favouritechecker: function () {
-     if(jwt){
-      axios.get(`${apiaddress}find/${jwt}`).then((res) => {
-        this.user = res.data.data;
-        let check = this.user.favourite.find(
-          (item) => item.id === this.book._id
-        );
-        if (check) {
-          this.like = true;
-        } else {
-          this.like = false;
-        }
-      });
-     }
+      if (jwt) {
+        axios.get(`${apiaddress}find/${jwt}`).then((res) => {
+          this.user = res.data.data;
+          let check = this.user.favourite.find(
+            (item) => item.id === this.book._id
+          );
+          if (check) {
+            this.like = true;
+          } else {
+            this.like = false;
+          }
+        });
+      }
     },
-    addtocard:function(){
-      if(jwt){
-        axios.post(`${apiaddress}addtocard`,{
-        userid:this.user._id,
-        book:{
-          img:this.book.imgs[0].adress,
-          name:this.book.name,
-          id:this.book._id,
-          number:1
-
-        }
-      })
-      }else{
+    addtocard: function () {
+      if (jwt) {
+        axios.post(`${apiaddress}addtocard`, {
+          userid: this.user._id,
+          book: {
+            img: this.book.imgs[0].adress,
+            name: this.book.name,
+            id: this.book._id,
+            number: 1,
+          },
+        });
+      } else {
         this.loginpopup = true;
       }
-      
-    }
+    },
   },
 };
 </script>
@@ -244,7 +254,7 @@ export default {
 <style scoped>
 #parent {
   display: grid;
-  grid: auto auto auto auto auto / 45% 55%;
+  grid: auto auto auto auto / 45% 55%;
   /* grid-row: auto auto auto;
   grid-column: 80% 20%; */
 }
@@ -261,21 +271,17 @@ export default {
   grid-row: 2;
   grid-column: 2;
 }
-#addcomment {
+
+#relatedbook {
+  height: 270px;
+
+  background-color: var(--red);
   grid-row: 3;
   grid-column: 1 / span 2;
 }
-#relatedbook {
-  height: 270px;
- 
-  background-color: var(--red);
+#footer {
   grid-row: 4;
   grid-column: 1 / span 2;
-}
-#footer{
-  grid-row: 5;
-  grid-column: 1 / span 2;
-  
 }
 
 #swiper {
@@ -286,10 +292,7 @@ export default {
 img {
   height: 90%;
 }
-.other-img-show {
-  width: 200px;
-  height: 200px;
-}
+
 .btn-red {
   cursor: pointer;
   background-color: var(--red);
@@ -318,10 +321,7 @@ textarea {
   outline: none;
   box-shadow: none;
 }
-.card-comments {
-  width: 300px;
-  height: 220px;
-}
+
 .card-img {
   width: 100px;
   height: 100px;
@@ -343,9 +343,45 @@ textarea.addcommenttxt {
 .blur {
   filter: blur(1px);
 }
-.text-secondary{
-  color: #6c757d !important
+.text-secondary {
+  color: #6c757d !important;
+}
+
+@media screen and (max-width: 767px) {
+  #parent {
+    display: grid;
+    grid: auto auto auto auto auto / auto;
+  }
+  #header {
+    grid-row: 1;
+    grid-column: 1 / span 1;
+  }
+  #slider {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  #detail {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  #relatedbook {
+    grid-row: 4;
+    grid-column: 1 / span 1;
+  }
+  #footer {
+    grid-row: 5;
+    grid-column: 1 / span 1;
+  }
+  textarea {
+    height: 200px;
+  }
+  .btn-red{
+    width: 150px;
+  }
+  .price{
+    padding-top: 8px;
+    font-size: 17px
+  }
 }
 </style>
-
-//TODO ADD footer to this //TODO ADD related book to this
