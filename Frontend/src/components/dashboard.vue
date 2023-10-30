@@ -70,19 +70,19 @@ export default {
 <style scoped>
 .menu {
   overflow: hidden;
-  /* width: 10%;
+   width: 10%;
   position: fixed !important;
   top: 50%;
   background-color: aqua;
-  /* top: 0 !important; */
-  /* left: 0 !important; */
-  /* width: 100% !important; */
-  /* border-left: 1px black solid !important ; */ 
+  top: 0 !important;
+   left: 0 !important; 
+  width: 100% !important;
+  border-left: 1px black solid !important ; 
 }
 @media screen and (max-width: 767px) {
 .body{
   width: 100% !important;
-  /* overflow: auto; */
+  overflow: auto;
   
   
   

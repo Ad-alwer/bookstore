@@ -7,9 +7,9 @@ mongoose.connect(config.info.db.address).then(() => console.log("conect"));
 const bookstoreschema = new mongoose.Schema({
   code: String,
   value: { type: mongoose.Schema.Types.Mixed },
-  count:{ type:Number },
-  minprice: { type:Number },
-  maxdiscount: { type:Number },
+  count:{type: mongoose.Schema.Types.Mixed },
+  minprice: { type: mongoose.Schema.Types.Mixed},
+  maxdiscount: { type: mongoose.Schema.Types.Mixed},
   active: { type: Boolean, default: true },
 });
 bookstoreschema.plugin(timestamp);

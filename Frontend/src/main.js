@@ -32,6 +32,7 @@ import favourite from "./components/profile/favourite.vue"
 import profile from "./components/profile.vue"
 import personaldata from './components/profile/Personaldata.vue'
 import orders from "./components/profile/orders.vue"
+import notfound from "./components/404.vue"
 
 
 // import slider from "./components/profile/menu.vue";
@@ -51,6 +52,7 @@ const routes = [
   { path: "/profile", component: profile },
   { path: "/profile/personaldata", component: personaldata },
   { path: "/profile/orders", component: orders },
+  { path: "/:pathMatch(.*)", component: notfound },
 
 
 

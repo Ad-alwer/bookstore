@@ -1,7 +1,7 @@
 <template>
   <div id="parent" class="container-fluid mt-4">
     <div :class="popupshow ? 'blur table-responsive ' : ' table-responsive '">
-      <Table class="table table-bordered mt-3">
+      <Table class="table table-bordered table-responsive mt-3">
         <thead>
           <tr>
             <th class="text-center">کد تخفیف</th>
@@ -29,9 +29,15 @@
           <tr v-for="x in arr" :key="x.code">
             <th class="text-center">{{ x.code }}</th>
             <th class="text-center">{{ x.value }}</th>
-            <th class="text-center">{{ x.count }}</th>
-            <th class="text-center">{{ x.minprice }}</th>
-            <th class="text-center">{{ x.maxdiscount }}</th>
+            <th class="text-center">
+              {{ x.count == "unlimit" ? "نامحدود" : x.count }}
+            </th>
+            <th class="text-center">
+              {{ x.minprice == "unlimit" ? "نامحدود" : x.minprice }}
+            </th>
+            <th class="text-center">
+              {{ x.maxdiscount == "unlimit" ? "نامحدود" : x.maxdiscount }}
+            </th>
             <th class="text-center">
               <input
                 type="checkbox"
@@ -194,6 +200,12 @@ input[type="checkbox"]:checked + .switch {
 }
 .offscreen {
   display: none;
+}
+@media screen and (max-width: 767px) {
+  .table-responsive {
+    padding: 0;
+    margin: 0;
+  }
 }
 </style>
 
