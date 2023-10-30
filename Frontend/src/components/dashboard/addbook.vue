@@ -1,9 +1,9 @@
 <template>
   <div id="parent" class="container mt-3">
     <P class="fs-1 text-center">افزودن کتاب</P>
-    <div class="d-flex justify-content-center gap-5 mt-3">
+    <div class="d-flex justify-content-center flex-wrap gap-5 mt-3 img-body">
       <div>
-        <div class="border border-1 border-black divinp">
+        <div class="border border-1 border-black divinp ">
           <input
             type="file"
             accept=".png, .jpg, .jpeg"
@@ -14,7 +14,7 @@
             @change="addimg('inp1', 'img1')"
           />
 
-          <div v-show="img1" class="border border-1 border-black divinp">
+          <div v-show="img1" class="border border-1 border-black divinp ">
             <img src="" ref="img1" class="img-fluid w-100 h-100" alt="" />
           </div>
 
@@ -397,6 +397,7 @@ export default {
 .divinp {
   width: 200px;
   height: 200px;
+  border-radius: 20px;
   background-color: rgb(255, 255, 255);
 }
 .plusbtn {
@@ -416,5 +417,26 @@ textarea {
 input {
   font-family: "B Koodak";
 }
+
+.border-secondary {
+  border-color: #6c757d !important;
+}
+.text-secondary {
+  color: #6c757d !important;
+}
+.border-black{
+  border-color: black !important;
+}
+@media screen and (max-width: 767px) {
+  .divinp {
+  width: 100px;
+  height:100px;
+ 
+}
+.img-body{
+gap: 30px !important;
+margin-bottom: 30px;
+}
+}
 </style>
-//TODO options
+

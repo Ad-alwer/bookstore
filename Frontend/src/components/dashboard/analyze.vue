@@ -1,12 +1,12 @@
 <template>
   <div id="parent" class="container pt-1 mb-3">
-    <div class="mx-4 px-4">
+    <div class="mx-4 px-4 monthorder-parent">
       <p class="text-center fs-2">نمودار فروش ماهانه</p>
       <canvas id="monthchart" class="" height="90"></canvas>
     </div>
   </div>
-  <div class="d-flex w-100 ">
-    <div class="w-50 mx-4 px-4 mb-1">
+  <div class="d-flex w-100 chart-book-orders-parent">
+    <div class="w-50 mx-4 px-4 mb-1 book-order-parent">
       <p class="text-center fs-2">نمودار فروش کتاب ها</p>
       <div class="justify-content-center d-flex my-2">
         <select
@@ -26,11 +26,16 @@
           </option>
         </select>
       </div>
-      <canvas id="bookschart" class="" height="130" w></canvas>
+      <canvas id="bookschart" class="" width="350"></canvas>
     </div>
-    <div class="d-flex flex-column mx-auto mt-2 mb-1 ">
+    <div class="d-flex flex-column mx-auto mt-2 mb-1">
       <p class="text-center fs-2">نمودار پر فروش ترین کتاب ها</p>
-      <canvas id="mostorderschart" class="mt-1"  height="500" ></canvas>
+    
+      <canvas
+        id="mostorderschart"
+        class="mt-1"
+        height="120"
+      ></canvas>
     </div>
   </div>
 </template>
@@ -176,7 +181,6 @@ export default {
         },
         options: {
           responsive: true,
-          
         },
       });
     },
@@ -188,7 +192,29 @@ export default {
 #monthchart {
   width: 400px;
 }
-#mostorderschart{
+.responsive {
+  display: none !important;
+}
 
+@media screen and (max-width: 767px) {
+  #monthchart {
+    width: 80px;
+  }
+  .responsive {
+    display: block !important;
+  }
+  .non-responsive {
+    display: none !important;
+  }
+
+
+  .book-order-parent {
+   
+    display: none ;
+    
+  }
+ 
 }
 </style>
+
+//TODO NOT FIX MENU

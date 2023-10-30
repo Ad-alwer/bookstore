@@ -81,7 +81,9 @@
             <p class="txt-sum pb-0 mb-0">{{ resualtval }}</p>
           </div>
           <div class="d-flex justify-content-center m-3">
-            <button class="btn px-3 mb-3 btn-red py-2" @click="finishorder">ثبت سفارش</button>
+            <button class="btn px-3 mb-3 btn-red py-2" @click="finishorder">
+              ثبت سفارش
+            </button>
           </div>
         </div>
       </div>
@@ -166,9 +168,8 @@ export default {
           });
       }
     },
-    delet:function(bookid){
-        
-        axios
+    delet: function (bookid) {
+      axios
         .post(`${apiaddress}deletbasket`, {
           id: this.user._id,
           bookid,
@@ -210,11 +211,11 @@ export default {
         }, 40);
       });
     },
-    finishorder:function(){
-       if(this.books.length > 0){
-        location.href='/recordorder'
-       }
-    }
+    finishorder: function () {
+      if (this.books.length > 0) {
+        location.href = "/recordorder";
+      }
+    },
   },
   data() {
     return {
@@ -299,9 +300,8 @@ img {
 .txt-sum {
   font-size: 20px;
 }
-.border-secondary{
- border-color:  #6C8BC0 !important
-
+.border-secondary {
+  border-color: #6c757d !important;
 }
 </style>
 

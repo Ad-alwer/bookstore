@@ -5,7 +5,7 @@
       <hr />
       <div
         v-if="books.length > 0"
-        class="d-flex gap-3 justify-content-end flex-wrap"
+        class="d-flex gap-3 justify-content-end flex-wrap product-parent"
       >
         <div class="card" v-for="x in books" :key="x.name">
           <div class="d-flex justify-content-center">
@@ -165,15 +165,14 @@ export default {
         if (result.isConfirmed) {
           axios.get(`${apiaddress}deletbook/${id}`).then((res) => {
             console.log(res.data);
-        if (res.data) {
-          
-          Toast.fire({
+            if (res.data) {
+              Toast.fire({
                 icon: "success",
                 title: `${name}با موفقیت پاک شد `,
               });
-              this.getbooks()
-        }
-      });
+              this.getbooks();
+            }
+          });
         }
       });
     },
@@ -213,5 +212,13 @@ img {
 }
 .blur {
   filter: blur(4px);
+}
+
+@media screen and (max-width: 767px) {
+  .product-parent {
+    justify-content: center !important;
+    margin-bottom: 10px;
+    gap: 10px !important;
+  }
 }
 </style>

@@ -1,8 +1,8 @@
-vue
+
 <template>
-  <div id="parent" class="d-flex">
-    <hmenu class="menu" @changedata="changedata" />
-    <div class="w-100 h-100">
+  <div id="parent" class="d-flex ">
+    <hmenu class="menu position-fixed top-0 " @changedata="changedata" />
+    <div class="w-100 h-100 body">
       <users v-if="data == 'users'" class="w-100 h-100" />
       <orders v-if="data == 'orders'" class="w-100 h-100" />
       <addbook v-if="data == 'addbook'" class="w-100 h-100" />
@@ -70,7 +70,31 @@ export default {
 <style scoped>
 .menu {
   overflow: hidden;
+  /* width: 10%;
+  position: fixed !important;
+  top: 50%;
+  background-color: aqua;
+  /* top: 0 !important; */
+  /* left: 0 !important; */
+  /* width: 100% !important; */
+  /* border-left: 1px black solid !important ; */ 
+}
+@media screen and (max-width: 767px) {
+.body{
+  width: 100% !important;
+  /* overflow: auto; */
+  
+  
+  
+ 
+}
+.menu{
+  overflow: hidden !important;
+  position: absolute !important;
+  top: 800px !important ;
+  height: 500px;
+}
 }
 </style>
 
-//TODO DETAILSHOPS
+

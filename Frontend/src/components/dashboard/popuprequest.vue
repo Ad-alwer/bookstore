@@ -11,6 +11,7 @@
         class="form-control border-secondary text-secondary text-dark"
         placeholder="توضیحات"
         v-model="desc"
+        disabled
         
       >
       
@@ -87,6 +88,14 @@ textarea{
     resize: none;
     width: 500px;
     height: 150px;
+}
+
+@media screen and (max-width: 767px) {
+  textarea{
+    resize: none;
+    width: 300px;
+    height: 200px;
+}
 }
 
 </style>

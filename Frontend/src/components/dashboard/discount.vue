@@ -1,6 +1,6 @@
 <template>
   <div id="parent" class="container-fluid mt-4">
-    <div :class="popupshow ? 'blur' : ''">
+    <div :class="popupshow ? 'blur table-responsive ' : ' table-responsive '">
       <Table class="table table-bordered mt-3">
         <thead>
           <tr>

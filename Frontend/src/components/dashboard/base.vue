@@ -11,7 +11,7 @@
           @click="bannereditshower = true"
         />
       </div>
-      <div class="d-flex justify-content-center gap-3">
+      <div class="d-flex justify-content-center  gap-3 div-banners">
         <div v-for="x in banner" :key="x">
           <img
             :src="require(`../../assets/${x.adress}`)"
@@ -38,9 +38,9 @@
         </p>
       </div>
     </div>
-    <div class="border-1 border border-secondary rounded-3 mt-2 p-3">
+    <div class="border-1 border border-secondary rounded-3 mt-2 p-3 mb-2">
       <p class="fs-3 text-center">تنظیمات نمایش</p>
-      <div class="d-flex justify-content-evenly">
+      <div class="d-flex justify-content-evenly div-options">
         <div class="d-flex gap-4 options-div">
           <span class="spans-title fs-5">پرفروش ترین ها </span>
 
@@ -231,5 +231,31 @@ input[type="checkbox"]:checked + .switch {
 .spans-title {
   position: relative;
   top: 2px;
+}
+.border-secondary {
+  border-color: #6c757d !important;
+}
+
+@media screen and (max-width: 767px) {
+.div-banners{
+  flex-direction: column !important;
+  align-items: center;
+  
+  height: 100vh
+
+  
+}
+.div-options{
+  flex-direction: column !important;
+  /* align-items: center; */
+}
+.options-div {
+  position: relative;
+}
+.options-div div{
+  position: absolute;
+
+  left: 10%;
+}
 }
 </style>

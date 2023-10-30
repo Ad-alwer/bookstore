@@ -1,6 +1,7 @@
 <template>
   <div class="container mt-3">
-    <table class="table">
+    <div class="table-responsive">
+      <table class="table">
       <thead>
         <tr>
           <th class="text-center">نام کتاب</th>
@@ -28,6 +29,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
   <popup
     :bookname="bookname"
