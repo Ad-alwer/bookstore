@@ -4,7 +4,7 @@
     :modules="modules"
     :slides-per-view="1"
     :space-between="10"
-    navigation
+    
     
     :scrollbar="{ draggable: true }"
     loop="true"

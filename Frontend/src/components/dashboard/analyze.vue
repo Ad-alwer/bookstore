@@ -1,5 +1,5 @@
 <template>
-  <div id="parent" class="container pt-1 mb-3">
+  <div id="parent" class="container pt-1 mt-2 mb-3">
     <div class="mx-4 px-4 monthorder-parent">
       <p class="text-center fs-2">نمودار فروش ماهانه</p>
       <canvas id="monthchart" class="" height="90"></canvas>

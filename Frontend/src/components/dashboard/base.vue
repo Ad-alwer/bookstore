@@ -29,6 +29,7 @@
           class="edit-icon pointer"
           icon="material-symbols:edit-outline"
           width="20"
+          @click="genreeditshower=true"
           height="20"
         />
       </div>

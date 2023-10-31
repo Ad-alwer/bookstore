@@ -40,7 +40,7 @@
       <h5 class="text-center pt-1 text-secondary">{{ book.genre }}</h5>
       <div class="justify-content-center d-flex mx-5">
         <textarea
-          class="border-2 rounded-4 px-4 py-3 form-control text-secondary text-center"
+          class="border-2 rounded-4 px-4 py-3 form-control text-secondary text-center trim-text"
           name=""
           disabled
           id=""
@@ -348,6 +348,12 @@ textarea.addcommenttxt {
 }
 
 @media screen and (max-width: 767px) {
+  .trim-text {
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
   #parent {
     display: grid;
     grid: auto auto auto auto auto / auto;
